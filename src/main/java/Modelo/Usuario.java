@@ -10,10 +10,19 @@ public class Usuario {
     private String apellido;
     private String correo;
     private String nombre_usuario;
-    private String tipo_usuario;
-
-    public Usuario() {
+    private String contrasenna;
+    
+     public Usuario() {
     }
+
+    public String getContrasenna() {
+        return contrasenna;
+    }
+
+    public void setContrasenna(String contrasenna) {
+        this.contrasenna = contrasenna;
+    }
+    private String tipo_usuario;
 
     public int getId_usuario() {
         return id_usuario;
