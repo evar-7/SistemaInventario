@@ -18,6 +18,13 @@ public class Pedido {
     
     public Pedido () {
     }
+    
+    public Pedido(int id_pedido, int id_usuario, Date fecha_pedido, String estado) {
+        this.id_pedido = id_pedido;
+        this.id_usuario = id_usuario;
+        this.fecha_pedido = fecha_pedido;
+        this.estado = estado;
+    }
 
     public int getId_pedido() {
         return id_pedido;
