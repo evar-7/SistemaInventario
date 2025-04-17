@@ -4,9 +4,6 @@
  */
 package Vista;
 
-import Modelo.Usuario;
-import Vista.Registro;
-import Datos.Conexion;
 import Controladores.ControladorLogin;
 /**
  *

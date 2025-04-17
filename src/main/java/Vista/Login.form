@@ -28,10 +28,8 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="jLabel2" min="-2" pref="144" max="-2" attributes="0"/>
                   <Component id="jLabel3" alignment="0" min="-2" pref="108" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jLabel1" max="32767" attributes="0"/>
-                      <Component id="btn_login" alignment="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel1" max="32767" attributes="0"/>
+                  <Component id="btn_login" alignment="0" max="32767" attributes="0"/>
                   <Component id="txt_username" alignment="0" max="32767" attributes="0"/>
                   <Component id="txt_contrasenna" alignment="0" pref="163" max="32767" attributes="0"/>
               </Group>
