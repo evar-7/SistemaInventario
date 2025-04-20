@@ -11,7 +11,7 @@ public class Conexion
 {
         String url = "jdbc:mysql://localhost:3306/tiendavirtual";
         String user="root";
-        String password="12345";
+        String password="";
        
     public Conexion() {}
        
