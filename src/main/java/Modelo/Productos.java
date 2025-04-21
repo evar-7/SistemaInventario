@@ -1,25 +1,41 @@
 
 package Modelo;
 
-
+/**
+ *
+ * @author Erick
+ */
 public class Productos {
     
-    String nombre, descripción, categoría, proveedor;    
-    int stock;
-    float precio;
+    private int id;
+    private String nombre;
+    private String descripcion;
+    private int precio;
+    private int stockDisponible;
+    private String categoria;
+    private String proveedor;
 
     public Productos() {
     }
 
-    public Productos(String nombre, String descripción, String categoría, String proveedor, int stock, float precio) {
+    public Productos(int id, String nombre, String descripcion, int precio, int stockDisponible, String categoria, String proveedor) {
+        this.id = id;
         this.nombre = nombre;
-        this.descripción = descripción;
-        this.categoría = categoría;
-        this.proveedor = proveedor;
-        this.stock = stock;
+        this.descripcion = descripcion;
         this.precio = precio;
+        this.stockDisponible = stockDisponible;
+        this.categoria = categoria;
+        this.proveedor = proveedor;
+    }    
+
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -28,20 +44,36 @@ public class Productos {
         this.nombre = nombre;
     }
 
-    public String getDescripción() {
-        return descripción;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescripción(String descripción) {
-        this.descripción = descripción;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public String getCategoría() {
-        return categoría;
+    public int getPrecio() {
+        return precio;
     }
 
-    public void setCategoría(String categoría) {
-        this.categoría = categoría;
+    public void setPrecio(int precio) {
+        this.precio = precio;
+    }
+
+    public int getStockDisponible() {
+        return stockDisponible;
+    }
+
+    public void setStockDisponible(int stockDisponible) {
+        this.stockDisponible = stockDisponible;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
     }
 
     public String getProveedor() {
@@ -51,24 +83,4 @@ public class Productos {
     public void setProveedor(String proveedor) {
         this.proveedor = proveedor;
     }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
-    }
-    
-    
-
-
 }
