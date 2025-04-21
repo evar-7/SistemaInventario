@@ -7,6 +7,7 @@ package Controladores;
 import Vista.Login;
 import Modelo.Usuario;
 import Datos.Conexion;
+import Vista.MenuAdmin;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,9 +38,9 @@ public class ControladorLogin {
     public void iniciarSesion() {
         String username = vista.txt_username.getText();
         String contrasenna = vista.txt_contrasenna.getText();
-        
-        if (username.isEmpty () || contrasenna.isEmpty()){
-                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+
+        if (username.isEmpty() || contrasenna.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
         }
 
         String sql = "SELECT * FROM Usuario WHERE nombre_usuario = ? AND contrasenna = ?";
@@ -54,8 +55,9 @@ public class ControladorLogin {
                 String nombre = resultado.getString("nombre");
                 JOptionPane.showMessageDialog(null, "Bienvenido, " + nombre);
                 vista.dispose();
-                if (tipo.equalsIgnoreCase("administrador")) {
-                    JOptionPane.showMessageDialog(null, "Admin");
+                if (tipo.equalsIgnoreCase("admin")) {
+                    MenuAdmin menuAdmin = new MenuAdmin();
+                    menuAdmin.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Cliente");
                 }
@@ -71,5 +73,3 @@ public class ControladorLogin {
     }
 
 }
-
-
