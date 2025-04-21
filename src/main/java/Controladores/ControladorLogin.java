@@ -37,6 +37,10 @@ public class ControladorLogin {
     public void iniciarSesion() {
         String username = vista.txt_username.getText();
         String contrasenna = vista.txt_contrasenna.getText();
+        
+        if (username.isEmpty () || contrasenna.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+        }
 
         String sql = "SELECT * FROM Usuario WHERE nombre_usuario = ? AND contrasenna = ?";
 
@@ -51,9 +55,9 @@ public class ControladorLogin {
                 JOptionPane.showMessageDialog(null, "Bienvenido, " + nombre);
                 vista.dispose();
                 if (tipo.equalsIgnoreCase("administrador")) {
-                    JOptionPane.showMessageDialog(null, "A");
+                    JOptionPane.showMessageDialog(null, "Admin");
                 } else {
-                    JOptionPane.showMessageDialog(null, "c");
+                    JOptionPane.showMessageDialog(null, "Cliente");
                 }
 
             } else {
