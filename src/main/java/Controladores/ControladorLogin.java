@@ -4,7 +4,7 @@
  */
 package Controladores;
 
-import Vista.Login;
+import Vista.VistaLogin;
 import Modelo.Usuario;
 import Datos.Conexion;
 import Vista.MenuAdmin;
@@ -21,10 +21,10 @@ import javax.swing.JOptionPane;
  */
 public class ControladorLogin {
 
-    private Login vista;
+    private VistaLogin vista;
     private Conexion conectar = new Conexion();
 
-    public ControladorLogin(Login vista) {
+    public ControladorLogin(VistaLogin vista) {
         this.vista = vista;
 
         this.vista.btn_login.addActionListener(new ActionListener() {

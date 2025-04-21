@@ -2,7 +2,7 @@
 package com.mycompany.sistemainventario;
 import Controladores.ControladorLogin;
 import Controladores.ControladorProductos;
-import Vista.Login;
+import Vista.VistaLogin;
 import Vista.VistaProductos;
 
 

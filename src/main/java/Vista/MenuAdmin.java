@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Controladores.ControladorUsuarioAdmin;
+import Modelo.Usuario;
 import Vista.VistaProductos;
 
 import javax.swing.ImageIcon;
@@ -78,6 +80,16 @@ public class MenuAdmin extends javax.swing.JFrame {
                 new VistaProductos().setVisible(true);
             }
         });
+
+        btnUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VistaUsuarioAdmin vista = new VistaUsuarioAdmin();
+                Usuario modelo = new Usuario();
+                ControladorUsuarioAdmin controlador = new ControladorUsuarioAdmin(modelo, vista);
+                vista.setVisible(true);
+            }
+        });
+
     }
 
     private ImageIcon escalarIcono(String ruta, int ancho, int alto) {

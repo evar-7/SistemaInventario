@@ -1,7 +1,7 @@
 package Controladores;
 
 import Modelo.Usuario;
-import Vista.Registro;
+import Vista.VistaRegistro;
 import Datos.Conexion;
 
 import java.awt.event.ActionEvent;
@@ -14,10 +14,10 @@ import java.sql.ResultSet;
 public class ControladorUsuario {
 
     private Usuario modelo;
-    private Registro registro;
+    private VistaRegistro registro;
     private Conexion conectar = new Conexion();
 
-    public ControladorUsuario(Usuario modelo, Registro vista) {
+    public ControladorUsuario(Usuario modelo, VistaRegistro vista) {
         //boton para registrarse
         this.modelo = modelo;
         this.registro = vista;

@@ -4,19 +4,19 @@
  */
 package Vista;
 import Modelo.Usuario;
-import Vista.Registro;
+import Vista.VistaRegistro;
 import Datos.Conexion;
 import Controladores.ControladorUsuario;
 /**
  *
  * @author jim
  */
-public class Registro extends javax.swing.JFrame {
+public class VistaRegistro extends javax.swing.JFrame {
 
     /**
      * Creates new form Registro
      */
-    public Registro() {
+    public VistaRegistro() {
         initComponents();
     }
 
@@ -147,7 +147,7 @@ public class Registro extends javax.swing.JFrame {
      */
     public static void main(String args[]) {
         Usuario modelo = new Usuario();
-        Registro registro = new Registro();
+        VistaRegistro registro = new VistaRegistro();
         ControladorUsuario controlador = new ControladorUsuario(modelo, registro);
         registro.setVisible(true);
         
@@ -159,13 +159,13 @@ public class Registro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaRegistro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -173,6 +173,14 @@ public class Registro extends javax.swing.JFrame {
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
 //                new Registro().setVisible(true);
+//            }
+//        });
+        //</editor-fold>
+
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new VistaRegistro().setVisible(true);
 //            }
 //        });
     }
