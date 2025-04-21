@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Vista.VistaProductos;
+
 import javax.swing.ImageIcon;
 import java.awt.Image;
 import javax.swing.JButton;
@@ -33,7 +35,6 @@ public class MenuAdmin extends javax.swing.JFrame {
         setTitle("Menú de Administración");
         setSize(500, 400);
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
 
         JPanel contenedor = new JPanel(new BorderLayout());
@@ -49,9 +50,9 @@ public class MenuAdmin extends javax.swing.JFrame {
         panelMenu.setBorder(BorderFactory.createEmptyBorder(10, 20, 20, 20));
 
         ImageIcon iconoUsuarios = escalarIcono("/imagenes/ic1.png", 64, 64);
-        ImageIcon iconoProductos = escalarIcono("/imagenes/ic2.png", 64, 64);
+        ImageIcon iconoProductos = escalarIcono("/imagenes/ic3.png", 64, 64);
         ImageIcon iconoPedidos = escalarIcono("/imagenes/ic4.png", 64, 64);
-        ImageIcon iconoPagos = escalarIcono("/imagenes/ic3.png", 64, 64);
+        ImageIcon iconoPagos = escalarIcono("/imagenes/ic2.png", 64, 64);
 
         JButton btnUsuarios = new JButton("Gestionar Usuarios", iconoUsuarios);
         JButton btnProductos = new JButton("Gestionar Productos", iconoProductos);
@@ -71,6 +72,12 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         contenedor.add(panelMenu, BorderLayout.CENTER);
         setContentPane(contenedor);
+
+        btnProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                new VistaProductos().setVisible(true);
+            }
+        });
     }
 
     private ImageIcon escalarIcono(String ruta, int ancho, int alto) {
