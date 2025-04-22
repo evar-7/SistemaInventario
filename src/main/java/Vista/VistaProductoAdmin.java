@@ -14,6 +14,7 @@ public class VistaProductoAdmin extends javax.swing.JFrame {
      * Creates new form VistaProductoAdmin
      */
     public VistaProductoAdmin() {
+        setTitle("Gestión de productos - Administración");
         initComponents();
     }
 
@@ -27,15 +28,15 @@ public class VistaProductoAdmin extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla_productos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btn_agregar = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
         btn_modificar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -46,23 +47,29 @@ public class VistaProductoAdmin extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla_productos);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Gestión de Productos");
 
-        jButton1.setBackground(new java.awt.Color(0, 158, 79));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setText("Agregar");
+        btn_agregar.setBackground(new java.awt.Color(0, 158, 79));
+        btn_agregar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_agregar.setForeground(new java.awt.Color(255, 255, 255));
+        btn_agregar.setText("Agregar");
+        btn_agregar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btn_eliminar.setBackground(new java.awt.Color(153, 0, 51));
+        btn_eliminar.setBackground(new java.awt.Color(215, 82, 99));
         btn_eliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_eliminar.setForeground(new java.awt.Color(255, 255, 255));
         btn_eliminar.setText("Eliminar");
+        btn_eliminar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btn_modificar.setBackground(new java.awt.Color(0, 123, 255));
         btn_modificar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_modificar.setForeground(new java.awt.Color(255, 255, 255));
         btn_modificar.setText("Modificar");
+        btn_modificar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,7 +86,7 @@ public class VistaProductoAdmin extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(155, 155, 155)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -96,9 +103,9 @@ public class VistaProductoAdmin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_modificar)
-                    .addComponent(jButton1)
+                    .addComponent(btn_agregar)
                     .addComponent(btn_eliminar))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,11 +147,11 @@ public class VistaProductoAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btn_agregar;
     public javax.swing.JButton btn_eliminar;
     public javax.swing.JButton btn_modificar;
-    public javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable jTable1;
+    public javax.swing.JTable tabla_productos;
     // End of variables declaration//GEN-END:variables
 }

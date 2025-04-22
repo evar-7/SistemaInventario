@@ -4,11 +4,15 @@
  */
 package Controladores;
 
+import Datos.Conexion;
 import Modelo.Productos;
 import Modelo.ProductosDAO;
 import Vista.VistaProductoAdmin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -22,6 +26,8 @@ public class ControladorProductoAdmin implements ActionListener {
     private Productos modelo;
     private VistaProductoAdmin vista;
     private ProductosDAO dao;
+    private Conexion conectar = new Conexion();
+
 
     public ControladorProductoAdmin(Productos modelo, VistaProductoAdmin vista) {
         this.vista = vista;
@@ -31,13 +37,13 @@ public class ControladorProductoAdmin implements ActionListener {
     }
 
     private void agregarEventos() {
-        vista.jButton1.addActionListener(this);
+        vista.btn_agregar.addActionListener(this);
         vista.btn_modificar.addActionListener(this);
         vista.btn_eliminar.addActionListener(this);
     }
 
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.jButton1) {
+        if (e.getSource() == vista.btn_agregar) {
             insertar();
         } else if (e.getSource() == vista.btn_modificar) {
             modificar();
@@ -61,29 +67,45 @@ public class ControladorProductoAdmin implements ActionListener {
     }
 
     private void modificar() {
-        int fila = vista.jTable1.getSelectedRow();
-        if (fila >= 0) {
-            DefaultTableModel modelo = (DefaultTableModel) vista.jTable1.getModel();
+        int fila = vista.tabla_productos.getSelectedRow();
 
-            int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
-            String nombre = modelo.getValueAt(fila, 1).toString();
-            String descripcion = modelo.getValueAt(fila, 2).toString();
-            int precio = Integer.parseInt(modelo.getValueAt(fila, 3).toString());
-            int stock = Integer.parseInt(modelo.getValueAt(fila, 4).toString());
-            String categoria = modelo.getValueAt(fila, 5).toString();
-            String proveedor = modelo.getValueAt(fila, 6).toString();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila para modificar.");
+            return;
+        }
 
-            Productos producto = new Productos(id, nombre, descripcion, precio, stock, categoria, proveedor);
-            dao.actualizar(producto, id);
-            JOptionPane.showMessageDialog(vista, "Producto modificado.");
-            cargarTabla();
+        try {
+            int id = Integer.parseInt(vista.tabla_productos.getValueAt(fila, 0).toString());
+            String nombre = vista.tabla_productos.getValueAt(fila, 1).toString();
+            String descripcion = vista.tabla_productos.getValueAt(fila, 2).toString();
+            int precio = Integer.parseInt(vista.tabla_productos.getValueAt(fila, 3).toString());
+            int stock = Integer.parseInt(vista.tabla_productos.getValueAt(fila, 4).toString());
+            String categoria = vista.tabla_productos.getValueAt(fila, 5).toString();
+            String proveedor = vista.tabla_productos.getValueAt(fila, 6).toString();
+
+            String sql = "UPDATE Producto SET nombre=?, descripcion=?, precio=?, stock=?, categoria=?, proveedor=? WHERE id_producto=?";
+            try (Connection con = conectar.Conectar(); PreparedStatement stmt = con.prepareStatement(sql)) {
+                stmt.setString(1, nombre);
+                stmt.setString(2, descripcion);
+                stmt.setInt(3, precio);
+                stmt.setInt(4, stock);
+                stmt.setString(5, categoria);
+                stmt.setString(6, proveedor);
+                stmt.setInt(7, id);
+                stmt.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Producto actualizado correctamente.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el producto: " + e.getMessage());
         }
     }
 
     private void eliminar() {
-        int fila = vista.jTable1.getSelectedRow();
+        int fila = vista.tabla_productos.getSelectedRow();
         if (fila >= 0) {
-            DefaultTableModel modelo = (DefaultTableModel) vista.jTable1.getModel();
+            DefaultTableModel modelo = (DefaultTableModel) vista.tabla_productos.getModel();
             int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
             int confirm = JOptionPane.showConfirmDialog(vista, "¿Eliminar producto?", "Confirmar", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {
@@ -111,6 +133,6 @@ public class ControladorProductoAdmin implements ActionListener {
             });
         }
 
-        vista.jTable1.setModel(modelo);
+        vista.tabla_productos.setModel(modelo);
     }
 }
