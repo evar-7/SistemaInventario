@@ -5,11 +5,14 @@
 package Vista;
 
 import Controladores.ControladorPedidoAdmin;
+import Controladores.ControladorProductoAdmin;
 import Controladores.ControladorProductos;
 import Controladores.ControladorUsuarioAdmin;
 import Modelo.Pedido;
+import Modelo.Productos;
 import Modelo.Usuario;
 import Vista.VistaProductos;
+import Vista.VistaProductoAdmin;
 
 import javax.swing.ImageIcon;
 import java.awt.Image;
@@ -80,8 +83,9 @@ public class MenuAdmin extends javax.swing.JFrame {
 
         btnProductos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                VistaProductos vista = new VistaProductos();
-                ControladorProductos controlador = new ControladorProductos(vista);
+                VistaProductoAdmin vista = new VistaProductoAdmin();
+                Productos modelo = new Productos();
+                ControladorProductoAdmin controlador = new ControladorProductoAdmin(modelo, vista);
                 vista.setVisible(true);
             }
         });
