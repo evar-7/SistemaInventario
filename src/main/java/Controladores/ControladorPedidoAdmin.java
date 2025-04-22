@@ -7,6 +7,8 @@ package Controladores;
 import Datos.Conexion;
 import Modelo.Pedido;
 import Vista.VistaPedidoAdmin;
+import java.awt.Color;
+import java.awt.Component;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -59,7 +63,12 @@ public class ControladorPedidoAdmin {
     }
 
     public void mostrarPedidos() {
-        DefaultTableModel modelo = new DefaultTableModel();
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         modelo.addColumn("Id");
         modelo.addColumn("Id Usuario");
         modelo.addColumn("Fecha");
@@ -78,6 +87,53 @@ public class ControladorPedidoAdmin {
                 modelo.addRow(fila);
             }
             vista.tabla_pedidos.setModel(modelo);
+            vista.tabla_pedidos.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
+                public Component getTableCellRendererComponent(
+                        JTable table, Object value, boolean isSelected,
+                        boolean hasFocus, int row, int column) {
+                    Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                    String estado = value.toString().toLowerCase();
+                    if (!isSelected) {
+                        switch (estado) {
+                            case "pendiente":
+                                c.setBackground(Color.decode("#FFF3CD"));
+                                break;
+                            case "enviado":
+                                c.setBackground(Color.decode("#D1ECF1"));
+                                break;
+                            case "entregado":
+                                c.setBackground(Color.decode("#D4EDDA"));
+                                break;
+                            case "cancelado":
+                                c.setBackground(Color.decode("#F8D7DA"));
+                                break;
+                            default:
+                                c.setBackground(Color.WHITE);
+                                break;
+                        }
+                    } else {
+                        switch (estado) {
+                            case "pendiente":
+                                c.setBackground(Color.decode("#FFF3CD"));
+                                break;
+                            case "enviado":
+                                c.setBackground(Color.decode("#D1ECF1"));
+                                break;
+                            case "entregado":
+                                c.setBackground(Color.decode("#D4EDDA"));
+                                break;
+                            case "cancelado":
+                                c.setBackground(Color.decode("#F8D7DA"));
+                                break;
+                            default:
+                                c.setBackground(Color.WHITE);
+                                break;
+                        }
+                    }
+                    c.setForeground(Color.BLACK);
+                    return c;
+                }
+            });
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -86,6 +142,7 @@ public class ControladorPedidoAdmin {
 
     public void mostrarDetallePedido(int idPedido) {
         DefaultTableModel modelo = new DefaultTableModel();
+
         modelo.addColumn("Id Producto");
         modelo.addColumn("Nombre");
         modelo.addColumn("Cantidad");
@@ -112,12 +169,21 @@ public class ControladorPedidoAdmin {
             }
 
             vista.tabla_detalles.setModel(modelo);
+            vista.tabla_detalles.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected,
+                        boolean hasFocus, int row, int column) {
+                    Component c = super.getTableCellRendererComponent(table, value, false, false, row, column);
+                    c.setBackground(Color.WHITE);
+                    c.setForeground(Color.BLACK);
+                    return c;
+                }
+            });
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
-    
+
     public void actualizarEstadoPedido() {
         try {
             String sql = "UPDATE Pedido SET estado=? WHERE id_pedido=?";

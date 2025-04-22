@@ -19,6 +19,10 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
     public VistaPedidoAdmin() {
         setTitle("Gestión de pedidos - Administración");
         initComponents();
+        tabla_pedidos.setBackground(java.awt.Color.decode("#ffffff"));
+        tabla_pedidos.setForeground(java.awt.Color.decode("#212529"));
+        tabla_pedidos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));
+
     }
 
     /**
@@ -60,6 +64,9 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(245, 245, 245));
+
+        tabla_pedidos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tabla_pedidos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -73,16 +80,25 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tabla_pedidos);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(33, 37, 41));
         jLabel1.setText("Gestión de pedidos");
 
+        jLabel2.setForeground(new java.awt.Color(33, 37, 41));
         jLabel2.setText("Id:");
 
+        txt_Id_pedido.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        txt_Id_pedido.setForeground(new java.awt.Color(41, 48, 96));
+        txt_Id_pedido.setDisabledTextColor(new java.awt.Color(51, 75, 170));
         txt_Id_pedido.setEnabled(false);
 
+        jLabel3.setForeground(new java.awt.Color(33, 37, 41));
         jLabel3.setText("Id Cliente:");
 
+        jLabel4.setForeground(new java.awt.Color(33, 37, 41));
         jLabel4.setText("Fecha:");
 
+        jLabel5.setForeground(new java.awt.Color(33, 37, 41));
         jLabel5.setText("Estado:");
 
         cb_estado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pendiente", "Enviado ", "Entregado", "Cancelado" }));
@@ -100,6 +116,9 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tabla_detalles);
 
+        btn_actualizar_estado.setBackground(new java.awt.Color(0, 123, 255));
+        btn_actualizar_estado.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btn_actualizar_estado.setForeground(new java.awt.Color(255, 255, 255));
         btn_actualizar_estado.setText("Actualizar estado");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -111,7 +130,6 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -121,16 +139,17 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
                                     .addComponent(txt_Id_pedido)
                                     .addComponent(id_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txt_fecha)
                                     .addComponent(cb_estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(btn_actualizar_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -143,7 +162,7 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 39, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(39, 39, 39))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -167,7 +186,7 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
                             .addComponent(cb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(btn_actualizar_estado)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)))
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
