@@ -60,12 +60,12 @@ public class MenuAdmin extends javax.swing.JFrame {
         ImageIcon iconoUsuarios = escalarIcono("/imagenes/ic1.png", 64, 64);
         ImageIcon iconoProductos = escalarIcono("/imagenes/ic3.png", 64, 64);
         ImageIcon iconoPedidos = escalarIcono("/imagenes/ic4.png", 64, 64);
-        ImageIcon iconoPagos = escalarIcono("/imagenes/ic2.png", 64, 64);
+        ImageIcon iconoReportes = escalarIcono("/imagenes/ic2.png", 64, 64);
 
         JButton btnUsuarios = new JButton("Gestionar Usuarios", iconoUsuarios);
         JButton btnProductos = new JButton("Gestionar Productos", iconoProductos);
         JButton btnPedidos = new JButton("Ver Pedidos", iconoPedidos);
-        JButton btnPagos = new JButton("Ver Pagos", iconoPagos);
+        JButton btnPagos = new JButton("Reportes", iconoReportes);
 
         JButton[] botones = {btnUsuarios, btnProductos, btnPedidos, btnPagos};
         for (JButton btn : botones) {
