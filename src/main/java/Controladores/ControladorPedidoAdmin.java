@@ -32,6 +32,14 @@ public class ControladorPedidoAdmin {
 
         mostrarPedidos();
 
+        vista.btn_actualizar_estado.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actualizarEstadoPedido();
+                mostrarPedidos();
+            }
+        });
+
         vista.tabla_pedidos.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -107,6 +115,19 @@ public class ControladorPedidoAdmin {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+    
+    public void actualizarEstadoPedido() {
+        try {
+            String sql = "UPDATE Pedido SET estado=? WHERE id_pedido=?";
+            PreparedStatement stmt = conectar.Conectar().prepareStatement(sql);
+            stmt.setString(1, vista.cb_estado.getSelectedItem().toString());
+            stmt.setInt(2, Integer.parseInt(vista.txt_Id_pedido.getText()));
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Estado actualizado correctamente.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el estado: " + e.getMessage());
         }
     }
 }
