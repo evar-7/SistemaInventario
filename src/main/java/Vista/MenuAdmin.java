@@ -33,13 +33,12 @@ import java.awt.*;
  *
  * @author jim
  */
-public class MenuAdmin extends javax.swing.JFrame {
+public class MenuAdmin extends JFrame {
 
     /**
      * Creates new form MenuAdmin
      */
     public MenuAdmin() {
-
         setTitle("Menú de Administración");
         setSize(500, 400);
         setLocationRelativeTo(null);
@@ -65,9 +64,9 @@ public class MenuAdmin extends javax.swing.JFrame {
         JButton btnUsuarios = new JButton("Gestionar Usuarios", iconoUsuarios);
         JButton btnProductos = new JButton("Gestionar Productos", iconoProductos);
         JButton btnPedidos = new JButton("Ver Pedidos", iconoPedidos);
-        JButton btnPagos = new JButton("Reportes", iconoReportes);
+        JButton btnReportes = new JButton("Reportes", iconoReportes);
 
-        JButton[] botones = {btnUsuarios, btnProductos, btnPedidos, btnPagos};
+        JButton[] botones = {btnUsuarios, btnProductos, btnPedidos, btnReportes};
         for (JButton btn : botones) {
             btn.setHorizontalTextPosition(SwingConstants.CENTER);
             btn.setVerticalTextPosition(SwingConstants.BOTTOM);
@@ -98,11 +97,17 @@ public class MenuAdmin extends javax.swing.JFrame {
                 vista.setVisible(true);
             }
         });
-                btnPedidos.addActionListener(new java.awt.event.ActionListener() {
+        btnPedidos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 VistaPedidoAdmin vista = new VistaPedidoAdmin();
                 Pedido modelo = new Pedido();
                 ControladorPedidoAdmin controlador = new ControladorPedidoAdmin(modelo, vista);
+                vista.setVisible(true);
+            }
+        });
+        btnReportes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuReportes vista = new MenuReportes();;
                 vista.setVisible(true);
             }
         });
