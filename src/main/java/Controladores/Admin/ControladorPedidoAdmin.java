@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Controladores;
+package Controladores.Admin;
 
 import Datos.Conexion;
 import Modelo.Pedido;
-import Vista.VistaPedidoAdmin;
+import Vista.Admin.VistaPedidoAdmin;
 import java.awt.Color;
 import java.awt.Component;
 

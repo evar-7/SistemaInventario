@@ -1,4 +1,4 @@
-package Vista;
+package Vista.Admin;
 
 import javax.swing.*;
 import java.awt.*;

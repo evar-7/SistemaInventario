@@ -1,6 +1,6 @@
 
 package com.mycompany.sistemainventario;
-import Controladores.ControladorLogin;
+import Controladores.Admin.ControladorLogin;
 import Controladores.ControladorProductos;
 import Vista.VistaLogin;
 import Vista.VistaProductos;

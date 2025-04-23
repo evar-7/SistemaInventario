@@ -4,7 +4,7 @@
  */
 package Vista;
 
-import Controladores.ControladorLogin;
+import Controladores.Admin.ControladorLogin;
 /**
  *
  * @author jim

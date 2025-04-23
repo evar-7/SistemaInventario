@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vista;
+package Vista.Admin;
 
-import Controladores.ControladorPedidoAdmin;
-import Controladores.ControladorProductoAdmin;
+import Controladores.Admin.ControladorPedidoAdmin;
+import Controladores.Admin.ControladorProductoAdmin;
 import Controladores.ControladorProductos;
-import Controladores.ControladorUsuarioAdmin;
+import Controladores.Admin.ControladorUsuarioAdmin;
 import Modelo.Pedido;
 import Modelo.Productos;
 import Modelo.Usuario;
 import Vista.VistaProductos;
-import Vista.VistaProductoAdmin;
 
 import javax.swing.ImageIcon;
 import java.awt.Image;
@@ -146,7 +145,7 @@ public class MenuAdmin extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelMenu.setForeground(new java.awt.Color(255, 255, 255));
-        panelMenu.setLayout(new java.awt.GridLayout());
+        panelMenu.setLayout(new java.awt.GridLayout(1, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
