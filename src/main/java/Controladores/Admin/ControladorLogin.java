@@ -36,11 +36,13 @@ public class ControladorLogin {
     }
 
     public void iniciarSesion() {
+        
         String username = vista.txt_username.getText();
         String contrasenna = vista.txt_contrasenna.getText();
 
         if (username.isEmpty() || contrasenna.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
+            return;
         }
 
         String sql = "SELECT * FROM Usuario WHERE nombre_usuario = ? AND contrasenna = ?";
@@ -53,13 +55,22 @@ public class ControladorLogin {
             if (resultado.next()) {
                 String tipo = resultado.getString("tipo_usuario");
                 String nombre = resultado.getString("nombre");
+                int idUsuario = resultado.getInt("id_usuario");
+
+                Usuario usuario = new Usuario();
+                usuario.setId_usuario(idUsuario);
+                usuario.setNombre(nombre);
+                usuario.setTipo_usuario(tipo);
+
                 JOptionPane.showMessageDialog(null, "Bienvenido, " + nombre);
-                vista.dispose();
+
                 if (tipo.equalsIgnoreCase("admin")) {
-                    MenuAdmin menuAdmin = new MenuAdmin();
+                    Vista.Admin.MenuAdmin menuAdmin = new Vista.Admin.MenuAdmin();
                     menuAdmin.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Cliente");
+                    Vista.VistaProductos vistaCliente = new Vista.VistaProductos();
+                    new Controladores.ControladorProductos(vistaCliente);
+                    vistaCliente.setVisible(true);
                 }
 
             } else {
@@ -69,7 +80,6 @@ public class ControladorLogin {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al iniciar sesión: " + e.getMessage());
         }
-
     }
-
 }
+
