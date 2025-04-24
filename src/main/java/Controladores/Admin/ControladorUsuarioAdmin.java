@@ -115,6 +115,17 @@ public class ControladorUsuarioAdmin {
             stmt.setString(6, vista.txt_tipo.getText());
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(null, "Usuario agregado");
+            
+            String tipo = vista.txt_tipo.getText().trim().toLowerCase();
+            vista.dispose();
+            
+            if (tipo.equals("admin")) {
+                Vista.Admin.MenuAdmin menu = new Vista.Admin.MenuAdmin();
+                menu.setVisible(true);
+            } else {
+                Vista.VistaProductos productos = new Vista.VistaProductos();
+                productos.setVisible(true);
+        }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al agregar: " + e.getMessage());
         }
