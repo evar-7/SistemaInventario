@@ -1,9 +1,5 @@
 
-/**
- *
- * @author Erick
- */
-
+/*
 package Controladores;
 
 import Modelo.Carrito;
@@ -11,6 +7,7 @@ import Modelo.ProductosDAO;
 import Vista.VistaProductos;
 
 import Modelo.Productos;
+import Vista.Inicio;
 import Vista.VistaCarrito;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,26 +17,26 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorProductos implements ActionListener {
 
-    private VistaProductos vista;
+    private Inicio vista;
     private ProductosDAO dao;
     private Carrito carrito;
 
-    public ControladorProductos(VistaProductos vista) {
+    public ControladorProductos(Inicio vista) {
         this.vista = vista;
         this.dao = new ProductosDAO();
         this.carrito = new Carrito(); 
-        agregarEventos();
+        //agregarEventos();
         cargarTabla();
-    }
-
+    }*/
+/*
     private void agregarEventos() {
         vista.getBtnAgregar().addActionListener(this);
         vista.getBtnActualizar().addActionListener(this);
         vista.getBtnEliminar().addActionListener(this);
         vista.getBtnAgregarCarrito().addActionListener(this);
         vista.getBtnVerCarrito().addActionListener(e -> mostrarCarrito());
-    }
-
+    }*/
+/*
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.getBtnAgregar()) {
@@ -50,6 +47,15 @@ public class ControladorProductos implements ActionListener {
             eliminar();
         } else if (e.getSource() == vista.getBtnAgregarCarrito()) {
             agregarAlCarrito();
+}*/
+/*
+ @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == vista.getbtnVerProducto()) {
+            insertar();
+        } else if (e.getSource() == vista.getbtnActualizar()) {
+            actualizar();
+        
 }
     }
 
@@ -99,7 +105,7 @@ public class ControladorProductos implements ActionListener {
             JOptionPane.showMessageDialog(vista, "Seleccione un producto para actualizar.");
         }
     }
-
+/*
     public void eliminar() {
         int fila = vista.getTablaProductos().getSelectedRow();
         if (fila >= 0) {
@@ -118,8 +124,8 @@ public class ControladorProductos implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(vista, "Seleccione un producto para eliminar.");
         }
-    }
-
+    }*/
+/*
     public void cargarTabla() {
         List<Productos> lista = dao.obtenerTodos();
         DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
@@ -136,7 +142,7 @@ public class ControladorProductos implements ActionListener {
                 p.getProveedor()
             });
         }
-    }
+    }/*
     public void agregarAlCarrito() {
         int fila = vista.getTablaProductos().getSelectedRow();
         if (fila >= 0) {
@@ -161,7 +167,7 @@ public class ControladorProductos implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(vista, "Seleccione un producto para agregar al carrito.");
         }
-    }
+    }*//*
     public void mostrarCarrito() {
         VistaCarrito vistaCarrito = new VistaCarrito();
         DefaultTableModel modelo = (DefaultTableModel) vistaCarrito.getTablaCarrito().getModel();
@@ -178,5 +184,5 @@ public class ControladorProductos implements ActionListener {
 
         vistaCarrito.getBtnCerrar().addActionListener(e -> vistaCarrito.dispose());
         vistaCarrito.setVisible(true);
-    }
-}
+    
+}}*/

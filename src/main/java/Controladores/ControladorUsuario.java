@@ -1,5 +1,6 @@
 package Controladores;
 
+import Controladores.Admin.ControladorLogin;
 import Modelo.Usuario;
 import Vista.Registro;
 import Datos.Conexion;
@@ -79,8 +80,10 @@ public class ControladorUsuario {
             pstmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Usuario registrado");
-            Login login = new Login();
-            login.setVisible(true);
+            Vista.Login loginForm = new Vista.Login();
+            ControladorLogin controlador = new ControladorLogin(loginForm);
+            loginForm.setVisible(true);
+
             registro.dispose();
 
         } catch (SQLException e) {

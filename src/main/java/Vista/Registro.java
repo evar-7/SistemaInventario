@@ -1,5 +1,6 @@
 package Vista;
 
+import Controladores.Admin.ControladorLogin;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,8 +38,8 @@ public class Registro extends javax.swing.JFrame {
     this.btn_registro.addMouseListener(new MouseAdapter() { // Usa this.btn_registro
         @Override
         public void mouseClicked(MouseEvent e) {
-            JOptionPane.showMessageDialog(null, "e");
-            // ControladorUsuario.registrarUsuario(); // Ya no es necesario aquí
+            
+           
         }
     });
 
@@ -395,9 +396,11 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_confcontrasennaActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        Login login = new Login();
-        login.setVisible(true);
+        Vista.Login loginForm = new Vista.Login();
+        ControladorLogin controlador = new ControladorLogin(loginForm);
+        loginForm.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

@@ -3,6 +3,9 @@ package Vista;
 
 
 import Controladores.Admin.ControladorLogin;
+
+import Controladores.ControladorUsuario;
+import Modelo.Usuario;
 import java.awt.*;
 import javax.swing.*;
 
@@ -243,11 +246,13 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_contrasennaActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-       
+        
     }//GEN-LAST:event_btn_loginActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        Usuario modelo = new Usuario();
         Registro registro = new Registro();
+        ControladorUsuario controlador = new ControladorUsuario(modelo, registro);
         registro.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked

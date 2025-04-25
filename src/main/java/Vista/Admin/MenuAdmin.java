@@ -6,7 +6,7 @@ package Vista.Admin;
 
 import Controladores.Admin.ControladorPedidoAdmin;
 import Controladores.Admin.ControladorProductoAdmin;
-import Controladores.ControladorProductos;
+//import Controladores.ControladorProductos;
 import Controladores.Admin.ControladorUsuarioAdmin;
 import Modelo.Pedido;
 import Modelo.Productos;
