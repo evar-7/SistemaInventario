@@ -6,15 +6,15 @@ import Controladores.Admin.ControladorUsuarioAdmin;
 import Datos.Conexion;
 import Modelo.Usuario;
 import Vista.Admin.VistaUsuarioAdmin;
-import Vista.VistaLogin;
+import Vista.Login;
 import java.sql.*;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {/*
         if (hayUsuariosRegistrados()) {
-            VistaLogin vistaLogin = new VistaLogin();
-            ControladorLogin controladorLogin = new ControladorLogin(vistaLogin);
+            Login vistaLogin = new Login();
+            ControladorLogin controladorLogin = new ControladorLogin(Login);
             vistaLogin.setVisible(true);
         } else {
             VistaUsuarioAdmin vistaRegistro = new VistaUsuarioAdmin();
@@ -37,6 +37,6 @@ public class Main {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return false;**/
     }
 }

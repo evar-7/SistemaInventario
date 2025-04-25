@@ -1,11 +1,12 @@
 package Controladores;
 
 import Modelo.Usuario;
-import Vista.VistaRegistro;
+import Vista.Registro;
 import Datos.Conexion;
+import Vista.Login;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -14,17 +15,16 @@ import java.sql.ResultSet;
 public class ControladorUsuario {
 
     private Usuario modelo;
-    private VistaRegistro registro;
+    private Registro registro;
     private Conexion conectar = new Conexion();
 
-    public ControladorUsuario(Usuario modelo, VistaRegistro vista) {
-        //boton para registrarse
+    public ControladorUsuario(Usuario modelo, Registro vista) {
         this.modelo = modelo;
         this.registro = vista;
 
-        this.registro.btn_registro.addActionListener(new ActionListener() {
+        this.registro.btn_registro.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
                 registrarUsuario();
             }
         });
@@ -41,26 +41,29 @@ public class ControladorUsuario {
         modelo.setTipo_usuario("cliente");
 
         //validaciones del registro
-        //revisar que todos los campos esten llenos
-        if (modelo.getNombre().isEmpty() || modelo.getApellido().isEmpty() || modelo.getCorreo().isEmpty() || modelo.getNombre_usuario().isEmpty() || modelo.getContrasenna().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos");
+        if (modelo.getNombre().isEmpty() || modelo.getApellido().isEmpty() || modelo.getCorreo().isEmpty() || modelo.getNombre_usuario().isEmpty() || modelo.getContrasenna().isEmpty() || registro.txt_confcontrasenna.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Por favor complete todos los campos, incluyendo la confirmación de contraseña");
             return;
         }
 
-        //validr el correo electronico
         if (!modelo.getCorreo().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
             JOptionPane.showMessageDialog(null, "Por favor ingrese un correo valido");
             return;
         }
 
-        //validar que el nombre de usuario sea unico
         if (!validacionNombreUsuario(modelo.getNombre_usuario())) {
             JOptionPane.showMessageDialog(null, "El nombre de usuario ya esta en uso");
             return;
         }
 
         if (modelo.getContrasenna().length() < 12) {
-            JOptionPane.showInternalMessageDialog(null, "La contraseña debe tener 12 caracteres como minimo");
+            JOptionPane.showMessageDialog(null, "La contraseña debe tener 12 caracteres como minimo");
+            return;
+        }
+
+        // **VALIDACIÓN DE CONFIRMACIÓN DE CONTRASEÑA AQUÍ**
+        if (!registro.txt_contrasenna.getText().equals(registro.txt_confcontrasenna.getText())) {
+            JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
             return;
         }
 
@@ -76,6 +79,8 @@ public class ControladorUsuario {
             pstmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Usuario registrado");
+            Login login = new Login();
+            login.setVisible(true);
             registro.dispose();
 
         } catch (SQLException e) {

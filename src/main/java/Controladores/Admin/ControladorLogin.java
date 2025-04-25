@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controladores.Admin;
 
-import Vista.VistaLogin;
+import Vista.*;
 import Modelo.Usuario;
 import Datos.Conexion;
 import Vista.Admin.MenuAdmin;
@@ -15,16 +11,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author jim
- */
 public class ControladorLogin {
 
-    private VistaLogin vista;
+    private Login vista;
     private Conexion conectar = new Conexion();
 
-    public ControladorLogin(VistaLogin vista) {
+    public ControladorLogin(Login vista) {
         this.vista = vista;
 
         this.vista.btn_login.addActionListener(new ActionListener() {
@@ -36,11 +28,10 @@ public class ControladorLogin {
     }
 
     public void iniciarSesion() {
-        
         String username = vista.txt_username.getText();
         String contrasenna = vista.txt_contrasenna.getText();
 
-        if (username.isEmpty() || contrasenna.isEmpty()) {
+        if (username.isEmpty() || contrasenna.isEmpty() || username.equals("User") || contrasenna.equals("Password")){
             JOptionPane.showMessageDialog(null, "Por favor complete todos los campos.");
             return;
         }
@@ -55,22 +46,13 @@ public class ControladorLogin {
             if (resultado.next()) {
                 String tipo = resultado.getString("tipo_usuario");
                 String nombre = resultado.getString("nombre");
-                int idUsuario = resultado.getInt("id_usuario");
-
-                Usuario usuario = new Usuario();
-                usuario.setId_usuario(idUsuario);
-                usuario.setNombre(nombre);
-                usuario.setTipo_usuario(tipo);
-
                 JOptionPane.showMessageDialog(null, "Bienvenido, " + nombre);
-
+                vista.dispose();
                 if (tipo.equalsIgnoreCase("admin")) {
-                    Vista.Admin.MenuAdmin menuAdmin = new Vista.Admin.MenuAdmin();
+                    MenuAdmin menuAdmin = new MenuAdmin();
                     menuAdmin.setVisible(true);
                 } else {
-                    Vista.VistaProductos vistaCliente = new Vista.VistaProductos();
-                    new Controladores.ControladorProductos(vistaCliente);
-                    vistaCliente.setVisible(true);
+                    JOptionPane.showMessageDialog(null, "Cliente"); // Aquí podrías abrir la interfaz de cliente
                 }
 
             } else {
@@ -80,6 +62,7 @@ public class ControladorLogin {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al iniciar sesión: " + e.getMessage());
         }
-    }
-}
 
+    }
+
+}

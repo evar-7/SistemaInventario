@@ -113,9 +113,9 @@ public class VistaRegistro extends javax.swing.JFrame {
                 .addComponent(txt_username, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_contrasenna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
                 .addComponent(btn_registro)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -148,7 +148,7 @@ public class VistaRegistro extends javax.swing.JFrame {
     public static void main(String args[]) {
         Usuario modelo = new Usuario();
         VistaRegistro registro = new VistaRegistro();
-        ControladorUsuario controlador = new ControladorUsuario(modelo, registro);
+        //ControladorUsuario controlador = new ControladorUsuario(modelo, registro);
         registro.setVisible(true);
         
         try {

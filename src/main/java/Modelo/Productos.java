@@ -14,7 +14,7 @@ public class Productos {
     private int stockDisponible;
     private String categoria;
     private String proveedor;
-
+    
     public Productos() {
     }
 
