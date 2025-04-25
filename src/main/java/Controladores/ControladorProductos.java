@@ -133,20 +133,32 @@ public class ControladorProductos implements ActionListener {
     }
 
     public void cargarTabla() {
-        List<Productos> lista = dao.obtenerTodos();
-        DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
-        modelo.setRowCount(0);
+        if (vista.getComboCategoría().equals("Cocina")) {
+            int x = 1;
+        } else if (vista.getComboCategoría().equals("Limpieza")) {
+            int x = 2;
+        } else if (vista.getComboCategoría().equals("Entretenimiento")) {
+            int x = 3;
+        } else if (vista.getComboCategoría().equals("Muebles")) {
+            int x = 4;
+            } else if (vista.getComboCategoría().equals("Todas")) {
+            int x = 5;
 
-        for (Productos p : lista) {
-            modelo.addRow(new Object[]{
-                p.getId(),
-                p.getNombre(),
-                p.getDescripcion(),
-                p.getPrecio(),
-                p.getStockDisponible(),
-                p.getCategoria(),
-                p.getProveedor()
-            });
+            List<Productos> lista = dao.obtenerTodosFiltrados(x);
+            DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
+            modelo.setRowCount(0);
+
+            for (Productos p : lista) {
+                modelo.addRow(new Object[]{
+                    p.getId(),
+                    p.getNombre(),
+                    p.getDescripcion(),
+                    p.getPrecio(),
+                    p.getStockDisponible(),
+                    p.getCategoria(),
+                    p.getProveedor()
+                });
+            }
         }
     }
     public void agregarAlCarrito() {
