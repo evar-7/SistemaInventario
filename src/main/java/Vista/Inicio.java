@@ -149,7 +149,10 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProductoActionPerformed
-        // TODO add your handling code here:
+        Vista.Producto producto = new Vista.Producto();
+        ControladorProductos CP = new ControladorProductos(producto);
+        producto.setVisible(true);    
+        this.dispose();
     }//GEN-LAST:event_btnVerProductoActionPerformed
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
@@ -218,6 +221,6 @@ public JTable getTablaProductos() {
     }
     
     public JButton getBtnVerProducto() {
-        return btnActualizar;
+        return btnVerProducto;
     }
 }
