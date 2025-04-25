@@ -17,6 +17,9 @@ public class Producto extends javax.swing.JFrame {
     /**
      * Creates new form Producto
      */
+    
+    private JTable tablaProductos;
+
     public Producto() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -79,6 +82,11 @@ public class Producto extends javax.swing.JFrame {
         btnAgregarCarrito.setForeground(new java.awt.Color(0, 0, 0));
         btnAgregarCarrito.setText("Agregar al Carrito");
         btnAgregarCarrito.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), null, null));
+        btnAgregarCarrito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarCarritoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,6 +148,10 @@ public class Producto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarCarritoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,6 +206,8 @@ public class Producto extends javax.swing.JFrame {
         return btnAgregarCarrito;
     }
    
-
+    public JTable getTablaProductos() {
+        return tablaProductos;
+    }
     
 }
