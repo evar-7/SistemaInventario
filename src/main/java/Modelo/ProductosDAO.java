@@ -13,7 +13,7 @@ public class ProductosDAO {
     
     private final String URL = "jdbc:mysql://localhost:3306/tiendavirtual";
     private final String USER = "root";
-    private final String PASS = "";
+    private final String PASS = "12345";
     
     public List<Productos> obtenerTodos() {
         List<Productos> producto = new ArrayList<>();
