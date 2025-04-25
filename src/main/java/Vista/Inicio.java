@@ -138,10 +138,19 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVerProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProductoActionPerformed
-        Vista.Producto producto = new Vista.Producto();
-        ControladorProductos CP = new ControladorProductos(producto);
-        producto.setVisible(true);    
-        this.dispose();
+        int filaSeleccionada = tablaProductos.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            String nombre = tablaProductos.getValueAt(filaSeleccionada, 1).toString();
+            String descripcion = tablaProductos.getValueAt(filaSeleccionada, 2).toString();
+            String precio = tablaProductos.getValueAt(filaSeleccionada, 3).toString();
+            String stock = tablaProductos.getValueAt(filaSeleccionada, 4).toString();
+
+            Vista.Producto producto = new Vista.Producto(nombre, descripcion, precio, stock);
+            producto.setVisible(true);
+            this.dispose(); // opcional: cerrar ventana actual
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Por favor seleccione un producto.");
+        }
     }//GEN-LAST:event_btnVerProductoActionPerformed
 
     /**
