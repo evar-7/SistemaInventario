@@ -150,7 +150,7 @@ public class ControladorProductos implements ActionListener {
             } else if (vista.getComboCategoría().equals("Todas")) {
             int x = 5;
 
-            List<Productos> lista = dao.obtenerTodosFiltrados(x);
+            List<Productos> lista = dao.obtenerTodos();
             DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
             modelo.setRowCount(0);
 
