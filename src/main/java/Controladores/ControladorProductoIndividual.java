@@ -1,90 +1,74 @@
 package Controladores;
 
 import Modelo.Carrito;
-import Modelo.ProductosDAO;
-import Vista.VistaProductos;
 import Modelo.Productos;
-import Vista.Inicio;
+import Modelo.ProductosDAO;
 import Vista.Producto;
-import Vista.VistaCarrito;
+import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 public class ControladorProductoIndividual implements ActionListener {
-    
-    private Inicio vista;
+
+    private Producto productoVista;
     private ProductosDAO dao;
     private Carrito carrito;
-    private Producto productoVista;
-    
 
-
-public ControladorProductoIndividual(Producto productoVista) {
+    public ControladorProductoIndividual(Producto productoVista) {
         this.productoVista = productoVista;
         this.dao = new ProductosDAO();
         this.carrito = new Carrito();
-        vista.getComboCategoría().addActionListener(this);
-        //agregarEventos();
-       
+        agregarEventos();
     }
 
-
-
-
-private void agregarEventos() {
+    private void agregarEventos() {
         productoVista.getBtnAgregarCarrito().addActionListener(this);
+    }
 
-}
-
-@Override
+    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == productoVista.getBtnAgregarCarrito()) {
-            
-            JOptionPane.showMessageDialog(null, "pruebabtn");
-            agregarAlCarrito();
-
-        } else if (e.getSource() == productoVista.getBtnAgregarCarrito()) {
-            
-
+            agregarAlCarritoDesdeDetalle();
         }
     }
 
-    public void agregarAlCarrito() {
-        
-        int fila = productoVista.getTablaProductos().getSelectedRow();
+    public void agregarAlCarritoDesdeDetalle() {
+        JOptionPane.showMessageDialog(null, "Prueba");
+        String nombre = productoVista.getjLabel4().getText().substring("Nombre Producto: ".length());
+        String descripcion = productoVista.getjLabel3().getText().substring("Descripción: ".length());
+        String precioTexto = productoVista.getjLabel5().getText().substring("Precio: ₡".length());
+        String stockTexto = productoVista.getjLabel1().getText().substring("Stock Disponible: ".length());
 
-        if (fila >= 0) {
-            try {
-                DefaultTableModel modelo = (DefaultTableModel) productoVista.getTablaProductos().getModel();
+        try {
+            int precio = Integer.parseInt(precioTexto);
+            int stockDisponible = Integer.parseInt(stockTexto);
 
-                int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
+            // Necesitas obtener el ID del producto de alguna manera. Podrías pasarlo al formulario Producto
+            // o recuperarlo de la base de datos basado en el nombre (si es único).
+            // Por ahora, asumimos que tienes una forma de obtener el ID.
+            // int idProducto = ... ;
 
-                int stockBD = dao.obtenerStockPorId(id);
+            // Simulamos obtener el ID (deberías tener tu propia lógica)
+            // Esto es solo un ejemplo, ¡no uses esto en producción si el nombre no es único!
+            Productos productoBD = dao.obtenerProductoPorNombre(nombre);
+            if (productoBD != null) {
+                int idProducto = productoBD.getId();
+                Productos productoParaCarrito = new Productos(idProducto, nombre, descripcion, precio, 1, productoBD.getCategoria(), productoBD.getProveedor()); // Stock en 1 por ahora
 
-                if (stockBD <= 0) {
-                    JOptionPane.showMessageDialog(productoVista, "No hay stock disponible para este producto.");
-                    return;
+                if (stockDisponible > 0) {
+                    carrito.agregarProducto(productoParaCarrito);
+                    JOptionPane.showMessageDialog(productoVista, nombre + " agregado al carrito.");
+                    // Opcional: Podrías decrementar el stock en la base de datos aquí
+                } else {
+                    JOptionPane.showMessageDialog(productoVista, "No hay stock disponible para " + nombre + ".");
                 }
-
-                String nombre = modelo.getValueAt(fila, 1).toString();
-                String descripcion = modelo.getValueAt(fila, 2).toString();
-                int precio = Integer.parseInt(modelo.getValueAt(fila, 3).toString());
-                String categoria = modelo.getValueAt(fila, 5).toString();
-                String proveedor = modelo.getValueAt(fila, 6).toString();
-
-                Productos producto = new Productos(id, nombre, descripcion, precio, stockBD, categoria, proveedor);
-                carrito.agregarProducto(producto);
-
-                JOptionPane.showMessageDialog(productoVista, "Producto agregado al carrito.");
-
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(productoVista, "Error al agregar al carrito: " + ex.getMessage());
+            } else {
+                JOptionPane.showMessageDialog(productoVista, "No se pudo encontrar el producto para agregar al carrito.");
             }
-        } else {
-            JOptionPane.showMessageDialog(productoVista, "Seleccione un producto para agregar al carrito.");
+
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(productoVista, "Error al procesar el precio o el stock.");
         }
     }
 

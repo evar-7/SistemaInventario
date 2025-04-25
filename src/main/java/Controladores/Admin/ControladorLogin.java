@@ -21,6 +21,8 @@ public class ControladorLogin {
 
         this.vista.btn_login.addActionListener(new ActionListener() {
             @Override
+            
+            
             public void actionPerformed(ActionEvent e) {
                 iniciarSesion();
             }

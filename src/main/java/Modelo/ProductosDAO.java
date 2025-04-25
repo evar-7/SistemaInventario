@@ -13,7 +13,7 @@ public class ProductosDAO {
     
     private final String URL = "jdbc:mysql://localhost:3306/tiendavirtual";
     private final String USER = "root";
-    private final String PASS = "";
+    private final String PASS = "12345";
     
     public List<Productos> obtenerTodos() {
         List<Productos> producto = new ArrayList<>();
@@ -175,4 +175,60 @@ public class ProductosDAO {
 
         return stock;
     }
+    /*
+     public Productos obtenerProductoPorId(int id) {
+        Productos producto = null;
+        String sql = "SELECT * FROM producto WHERE id_producto = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                producto = new Productos();
+                producto.setId(rs.getInt("id_producto"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getInt("precio"));
+                producto.setStockDisponible(rs.getInt("stock"));
+                producto.setCategoria(rs.getString("categoria"));
+                producto.setProveedor(rs.getString("proveedor"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return producto;
+    }*/
+    
+    public Productos obtenerProductoPorNombre(String nombre) {
+        Productos producto = null;
+        String sql = "SELECT * FROM producto WHERE nombre = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                producto = new Productos();
+                producto.setId(rs.getInt("id_producto"));
+                producto.setNombre(rs.getString("nombre"));
+                producto.setDescripcion(rs.getString("descripcion"));
+                producto.setPrecio(rs.getInt("precio"));
+                producto.setStockDisponible(rs.getInt("stock"));
+                producto.setCategoria(rs.getString("categoria"));
+                producto.setProveedor(rs.getString("proveedor"));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return producto;
+    }
+    
+    
 }

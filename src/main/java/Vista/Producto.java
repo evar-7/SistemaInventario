@@ -1,22 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 
 import Controladores.ControladorProductos;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
-/**
- *
- * @author XSF
- */
+
 public class Producto extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Producto
-     */
     
     private JTable tablaProductos;
 
@@ -194,11 +184,11 @@ public class Producto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCarrito;
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    public javax.swing.JLabel jLabel3;
+    public javax.swing.JLabel jLabel4;
+    public javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
@@ -209,5 +199,22 @@ public class Producto extends javax.swing.JFrame {
     public JTable getTablaProductos() {
         return tablaProductos;
     }
+    
+    public javax.swing.JLabel getjLabel1() {
+    return jLabel1;
+}
+
+public javax.swing.JLabel getjLabel3() {
+    return jLabel3;
+}
+
+public javax.swing.JLabel getjLabel4() {
+    return jLabel4;
+}
+
+public javax.swing.JLabel getjLabel5() {
+    return jLabel5;
+}
+    
     
 }

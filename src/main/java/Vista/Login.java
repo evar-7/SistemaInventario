@@ -309,18 +309,7 @@ public class Login extends javax.swing.JFrame {
 }
     
     
-    private void SetImageLabel2(JLabel labelName, String resourcePath) {
-    java.net.URL imgURL = getClass().getResource(resourcePath);
-    if (imgURL != null) {
-        ImageIcon image = new ImageIcon(imgURL);
-        Icon icon = new ImageIcon(image.getImage().getScaledInstance(
-                labelName.getWidth(), labelName.getHeight(), Image.SCALE_SMOOTH));
-        labelName.setIcon(icon);
-        this.repaint();
-    } else {
-        System.out.println("No se encontró la imagen: " + resourcePath);
-    }
-}
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btn_login;

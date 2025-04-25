@@ -146,6 +146,7 @@ public class Inicio extends javax.swing.JFrame {
             String stock = tablaProductos.getValueAt(filaSeleccionada, 4).toString();
 
             Vista.Producto producto = new Vista.Producto(nombre, descripcion, precio, stock);
+            ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto);
             producto.setVisible(true);
             this.dispose(); // opcional: cerrar ventana actual
         } else {
