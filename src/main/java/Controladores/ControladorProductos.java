@@ -1,11 +1,7 @@
-//a
-
 package Controladores;
 
 import Modelo.Carrito;
-import Modelo.ProductosDAO;
-import Vista.VistaProductos;
-
+import Modelo.ProductosDAO;import Vista.VistaProductos;
 import Modelo.Productos;
 import Vista.Inicio;
 import Vista.Producto;
@@ -18,49 +14,32 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorProductos implements ActionListener {
 
+    
     private Inicio vista;
     private ProductosDAO dao;
     private Carrito carrito;
     private Producto productoVista;
-    
 
+    
+    
     public ControladorProductos(Inicio vista) {
         this.vista = vista;
         this.dao = new ProductosDAO();
-        this.carrito = new Carrito(); 
+        this.carrito = new Carrito();
         vista.getComboCategoría().addActionListener(this);
         //agregarEventos();
         cargarTabla();
     }
+
     public ControladorProductos(Producto vista) {
         this.productoVista = vista;
     }
-    
-/*private void agregarEventos() {
-        vista.getBtnVerProducto().addActionListener(this);
-        vista.getBtnActualizar().addActionListener(this);
-        vista.getBtnEliminar().addActionListener(this);
-        vista.getBtnAgregarCarrito().addActionListener(this);
-        vista.getBtnVerCarrito().addActionListener(e -> mostrarCarrito());
-    }*/
-    
-    
+  
     private void agregarEventos() {
         vista.getBtnVerProducto().addActionListener(this);
-        
+        //vista.getBtnAgregarCarrito.addActionListener(this);
+
     }
-/*
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.getBtnAgregar()) {
-            insertar();
-        } else if (e.getSource() == vista.getBtnActualizar()) {
-            actualizar();
-        } else if (e.getSource() == vista.getBtnEliminar()) {
-            eliminar();
-        } else if (e.getSource() == vista.getBtnAgregarCarrito()) {
-            agregarAlCarrito();
-}*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -90,12 +69,12 @@ public class ControladorProductos implements ActionListener {
             JOptionPane.showMessageDialog(vista, "Error al agregar: " + ex.getMessage());
         }
     }
-
+/*
     public void actualizar() {
         int fila = vista.getTablaProductos().getSelectedRow();
         if (fila >= 0) {
             try {
-                
+
                 DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
 
                 int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
@@ -118,7 +97,7 @@ public class ControladorProductos implements ActionListener {
         } else {
             JOptionPane.showMessageDialog(vista, "Seleccione un producto para actualizar.");
         }
-    }
+    }*/
 
     public void eliminar() {
         int fila = vista.getTablaProductos().getSelectedRow();
@@ -154,65 +133,26 @@ public class ControladorProductos implements ActionListener {
         } else if (categoria.equals("Todas")) {
             x = 5;
         }
-            List<Productos> lista = dao.obtenerTodosFiltrados(x);
-            DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
-            modelo.setRowCount(0);
-
-            for (Productos p : lista) {
-                modelo.addRow(new Object[]{
-                    p.getId(),
-                    p.getNombre(),
-                    p.getDescripcion(),
-                    p.getPrecio(),
-                    p.getStockDisponible(),
-                    p.getCategoria(),
-                    p.getProveedor()
-                });
-            }
-        }
-    
-    public void agregarAlCarrito() {
-        int fila = vista.getTablaProductos().getSelectedRow();
-        if (fila >= 0) {
-            try {
-                DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
-
-                int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
-                String nombre = modelo.getValueAt(fila, 1).toString();
-                String descripcion = modelo.getValueAt(fila, 2).toString();
-                int precio = Integer.parseInt(modelo.getValueAt(fila, 3).toString());
-                int stock = Integer.parseInt(modelo.getValueAt(fila, 4).toString());
-                String categoria = modelo.getValueAt(fila, 5).toString();
-                String proveedor = modelo.getValueAt(fila, 6).toString();
-
-                Productos producto = new Productos(id, nombre, descripcion, precio, stock, categoria, proveedor);
-                carrito.agregarProducto(producto);
-
-                JOptionPane.showMessageDialog(vista, "Producto agregado al carrito.");
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(vista, "Error al agregar al carrito: " + ex.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(vista, "Seleccione un producto para agregar al carrito.");
-        }
-    }
-    public void mostrarCarrito() {
-        VistaCarrito vistaCarrito = new VistaCarrito();
-        DefaultTableModel modelo = (DefaultTableModel) vistaCarrito.getTablaCarrito().getModel();
+        List<Productos> lista = dao.obtenerTodosFiltrados(x);
+        DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
         modelo.setRowCount(0);
 
-        for (Productos p : carrito.getProductos()) {
+        for (Productos p : lista) {
             modelo.addRow(new Object[]{
+                p.getId(),
                 p.getNombre(),
                 p.getDescripcion(),
                 p.getPrecio(),
-                p.getCategoria()
+                p.getStockDisponible(),
+                p.getCategoria(),
+                p.getProveedor()
             });
         }
+    }
 
-        vistaCarrito.getBtnCerrar().addActionListener(e -> vistaCarrito.dispose());
-        vistaCarrito.setVisible(true);
+   
+
     
-        
-        
-}}
+    
+    
+}
