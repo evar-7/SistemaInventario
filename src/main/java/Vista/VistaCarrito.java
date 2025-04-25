@@ -5,8 +5,10 @@
 
 package Vista;
 
+import Modelo.Productos;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +17,7 @@ import javax.swing.JTable;
 public class VistaCarrito extends javax.swing.JFrame {
 
     /** Creates new form VistaCarrito */
+    
     public VistaCarrito() {
         initComponents();
         setLocationRelativeTo(null);
@@ -161,10 +164,26 @@ public class VistaCarrito extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistaCarrito().setVisible(true);
-                new VistaCarrito().setLocationRelativeTo(null);
+                VistaCarrito vista = new VistaCarrito();
+                vista.setLocationRelativeTo(null);
+                vista.setVisible(true);
             }
         });
+    }
+    
+    public void cargarDatosCarrito(java.util.List<Productos> productosEnCarrito) {
+        DefaultTableModel modelo = (DefaultTableModel) tablaCarrito.getModel();
+        modelo.setRowCount(0);
+
+        for (Productos p : productosEnCarrito) {
+            Object[] fila = {
+                p.getNombre(),
+                p.getDescripcion(),
+                p.getPrecio(),
+                p.getCategoria()
+            };
+            modelo.addRow(fila);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
