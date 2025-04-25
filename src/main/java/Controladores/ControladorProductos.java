@@ -8,6 +8,7 @@ import Vista.VistaProductos;
 
 import Modelo.Productos;
 import Vista.Inicio;
+import Vista.Producto;
 import Vista.VistaCarrito;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +21,7 @@ public class ControladorProductos implements ActionListener {
     private Inicio vista;
     private ProductosDAO dao;
     private Carrito carrito;
+    private Producto productoVista;
 
     public ControladorProductos(Inicio vista) {
         this.vista = vista;
@@ -28,6 +30,10 @@ public class ControladorProductos implements ActionListener {
         //agregarEventos();
         cargarTabla();
     }
+    public ControladorProductos(Producto vista) {
+        this.productoVista = vista;
+    }
+    
 /*private void agregarEventos() {
         vista.getBtnVerProducto().addActionListener(this);
         vista.getBtnActualizar().addActionListener(this);
