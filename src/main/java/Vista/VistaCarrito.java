@@ -36,7 +36,7 @@ public class VistaCarrito extends javax.swing.JFrame {
         btnCerrar1 = new javax.swing.JButton();
         btnCerrar2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Carrito de compras");
         setLocation(new java.awt.Point(0, 0));
 
@@ -76,7 +76,7 @@ public class VistaCarrito extends javax.swing.JFrame {
             }
         });
 
-        btnCerrar1.setText("Cancelar");
+        btnCerrar1.setText("Pagar");
         btnCerrar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrar1ActionPerformed(evt);

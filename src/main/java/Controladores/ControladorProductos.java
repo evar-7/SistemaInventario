@@ -27,7 +27,7 @@ public class ControladorProductos implements ActionListener {
         this.dao = new ProductosDAO();
         this.carrito = new Carrito();
         vista.getComboCategoría().addActionListener(this);
-        //agregarEventos();
+        agregarEventos();
         cargarTabla();
     }
 
@@ -37,21 +37,19 @@ public class ControladorProductos implements ActionListener {
   
     private void agregarEventos() {
         vista.getBtnVerProducto().addActionListener(this);
-        //vista.getBtnAgregarCarrito.addActionListener(this);
+        vista.getBtnVerCarrito().addActionListener(this);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.getBtnVerProducto()) {
-            insertar();
-
-        } else if (e.getSource() == vista.getComboCategoría()) {
+        if (e.getSource() == vista.getComboCategoría()) {
             cargarTabla();
 
-        }
+        } else if (e.getSource() == vista.getBtnVerCarrito()) {
+            mostrarCarrito();
     }
-
+    }
     public void insertar() {
         try {
             String nombre = JOptionPane.showInputDialog("Nombre:");
@@ -151,7 +149,24 @@ public class ControladorProductos implements ActionListener {
     }
 
    
+    public void mostrarCarrito() {
+        VistaCarrito vistaCarrito = new VistaCarrito();
+        DefaultTableModel modelo = (DefaultTableModel) vistaCarrito.getTablaCarrito().getModel();
+        modelo.setRowCount(0);
 
+        for (Productos p : carrito.getProductos()) {
+            modelo.addRow(new Object[]{
+                p.getNombre(),
+                p.getDescripcion(),
+                p.getPrecio(),
+                p.getCategoria()
+            });
+        }
+
+        vistaCarrito.getBtnCerrar().addActionListener(e -> vistaCarrito.dispose());
+        vistaCarrito.setVisible(true);
+
+    }
     
     
     

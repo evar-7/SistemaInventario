@@ -1,26 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controladores;
 
 import Modelo.Pedido;
 import Modelo.PedidoDAO;
 
-/**
- *
- * @Erick
- *  private int id_pedido;
-    private int id_usuario;
-    private java.util.Date fecha_pedido;
-    private String estado;
-    private double total;
- */
 public class ControladorPedido {
     private PedidoDAO pedidoDAO = new PedidoDAO();
 
-    public boolean crearPedido(int id_usuario) {
-        Pedido nuevoPedido = new Pedido(0, id_usuario, new java.util.Date(), "pendiente");
+    // Modificamos el método crearPedido para recibir el id_producto
+    public boolean crearPedido(int id_usuario, int id_producto) {
+        Pedido nuevoPedido = new Pedido(0, id_usuario, new java.util.Date(), "pendiente", id_producto);
         return pedidoDAO.crearPedido(nuevoPedido);
     }
 

@@ -1,6 +1,6 @@
 package Vista;
 
-import Controladores.ControladorProductos;
+import Controladores.ControladorProductoIndividual;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
@@ -40,6 +40,7 @@ public class Producto extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btnAgregarCarrito = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +79,8 @@ public class Producto extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setText("Volver");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,9 +97,14 @@ public class Producto extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(129, 129, 129))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(129, 129, 129))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnVolver)
+                        .addGap(156, 156, 156))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(16, 16, 16)
@@ -106,7 +114,9 @@ public class Producto extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addGap(29, 29, 29)
+                .addComponent(btnVolver)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(75, 75, 75)
                 .addComponent(jLabel5)
@@ -148,7 +158,7 @@ public class Producto extends javax.swing.JFrame {
     public static void main(String args[]) {
         
         Vista.Producto producto = new Vista.Producto();
-        ControladorProductos CP = new ControladorProductos(producto);
+        ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto);
         producto.setVisible(true);
         
         /* Set the Nimbus look and feel */
@@ -184,6 +194,7 @@ public class Producto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCarrito;
+    private javax.swing.JButton btnVolver;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JLabel jLabel3;
@@ -214,6 +225,9 @@ public javax.swing.JLabel getjLabel4() {
 
 public javax.swing.JLabel getjLabel5() {
     return jLabel5;
+}
+public JButton getBtnVolver() {
+        return btnVolver;
 }
     
     

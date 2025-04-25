@@ -4,9 +4,11 @@ import Modelo.Carrito;
 import Modelo.Productos;
 import Modelo.ProductosDAO;
 import Vista.Producto;
+import Vista.VistaCarrito;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.table.DefaultTableModel;
 
 public class ControladorProductoIndividual implements ActionListener {
 
@@ -23,17 +25,23 @@ public class ControladorProductoIndividual implements ActionListener {
 
     private void agregarEventos() {
         productoVista.getBtnAgregarCarrito().addActionListener(this);
+        productoVista.getBtnVolver().addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == productoVista.getBtnAgregarCarrito()) {
             agregarAlCarritoDesdeDetalle();
+        }else if (e.getSource() == productoVista.getBtnVolver()){
+            Vista.Inicio inicio = new Vista.Inicio();
+            ControladorProductos CP = new ControladorProductos(inicio);
+            inicio.setVisible(true);
+            productoVista.dispose();
         }
     }
 
     public void agregarAlCarritoDesdeDetalle() {
-        JOptionPane.showMessageDialog(null, "Prueba");
+        
         String nombre = productoVista.getjLabel4().getText().substring("Nombre Producto: ".length());
         String descripcion = productoVista.getjLabel3().getText().substring("Descripción: ".length());
         String precioTexto = productoVista.getjLabel5().getText().substring("Precio: ₡".length());
@@ -72,25 +80,8 @@ public class ControladorProductoIndividual implements ActionListener {
         }
     }
 
-    /*
-    public void mostrarCarrito() {
-        VistaCarrito vistaCarrito = new VistaCarrito();
-        DefaultTableModel modelo = (DefaultTableModel) vistaCarrito.getTablaCarrito().getModel();
-        modelo.setRowCount(0);
+    
 
-        for (Productos p : carrito.getProductos()) {
-            modelo.addRow(new Object[]{
-                p.getNombre(),
-                p.getDescripcion(),
-                p.getPrecio(),
-                p.getCategoria()
-            });
-        }
-
-        vistaCarrito.getBtnCerrar().addActionListener(e -> vistaCarrito.dispose());
-        vistaCarrito.setVisible(true);
-
-    }*/
     
     }
 
