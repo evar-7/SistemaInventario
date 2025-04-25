@@ -5,6 +5,7 @@
 package Vista;
 
 import Controladores.*;
+import Modelo.Carrito;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -18,14 +19,15 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    private Carrito carrito;
+
+    
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
         
+        
     }
-    
-
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -164,7 +166,7 @@ public class Inicio extends javax.swing.JFrame {
             String stock = tablaProductos.getValueAt(filaSeleccionada, 4).toString();
 
             Vista.Producto producto = new Vista.Producto(nombre, descripcion, precio, stock);
-            ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto);
+            ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto, this);
             producto.setVisible(true);
             this.dispose(); // opcional: cerrar ventana actual
         } else {
@@ -173,7 +175,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerProductoActionPerformed
 
     private void btnVerCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCarritoActionPerformed
-        // TODO add your handling code here:
+        VistaCarrito vistaCarrito = new VistaCarrito();
+        ControladorCarrito controladorCarrito = new ControladorCarrito(vistaCarrito, carrito);
+        vistaCarrito.setVisible(true);
     }//GEN-LAST:event_btnVerCarritoActionPerformed
 
     /**
@@ -242,7 +246,4 @@ public class Inicio extends javax.swing.JFrame {
     public JButton getBtnVerCarrito() {
         return btnVerCarrito;
     }
-    
-    
-    
 }
