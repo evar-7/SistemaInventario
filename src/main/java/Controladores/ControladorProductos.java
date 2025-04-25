@@ -22,11 +22,13 @@ public class ControladorProductos implements ActionListener {
     private ProductosDAO dao;
     private Carrito carrito;
     private Producto productoVista;
+    
 
     public ControladorProductos(Inicio vista) {
         this.vista = vista;
         this.dao = new ProductosDAO();
         this.carrito = new Carrito(); 
+        vista.getComboCategoría().addActionListener(this);
         //agregarEventos();
         cargarTabla();
     }
@@ -45,7 +47,7 @@ public class ControladorProductos implements ActionListener {
     
     private void agregarEventos() {
         vista.getBtnVerProducto().addActionListener(this);
-        vista.getBtnActualizar().addActionListener(this);
+        
     }
 /*
     @Override
@@ -60,15 +62,15 @@ public class ControladorProductos implements ActionListener {
             agregarAlCarrito();
 }*/
 
- @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.getBtnVerProducto()) {
             insertar();
-        } else if (e.getSource() == vista.getBtnActualizar()) {
-            actualizar();
+
         } else if (e.getSource() == vista.getComboCategoría()) {
             cargarTabla();
-}
+
+        }
     }
 
     public void insertar() {
@@ -140,15 +142,16 @@ public class ControladorProductos implements ActionListener {
 
     public void cargarTabla() {
         int x = 5;
-        if (vista.getComboCategoría().equals("Cocina")) {
+        String categoria = vista.getComboCategoría().getSelectedItem().toString();
+        if (categoria.equals("Cocina")) {
             x = 1;
-        } else if (vista.getComboCategoría().equals("Limpieza")) {
+        } else if (categoria.equals("Limpieza")) {
             x = 2;
-        } else if (vista.getComboCategoría().equals("Entretenimiento")) {
+        } else if (categoria.equals("Entretenimiento")) {
             x = 3;
-        } else if (vista.getComboCategoría().equals("Muebles")) {
+        } else if (categoria.equals("Muebles")) {
             x = 4;
-        } else if (vista.getComboCategoría().equals("Todas")) {
+        } else if (categoria.equals("Todas")) {
             x = 5;
         }
             List<Productos> lista = dao.obtenerTodosFiltrados(x);

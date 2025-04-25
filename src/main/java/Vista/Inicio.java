@@ -42,7 +42,6 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         btnVerProducto = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,7 +70,7 @@ public class Inicio extends javax.swing.JFrame {
             tablaProductos.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        ComboCategoría.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todas", "Cocina", "Limpieza", "Entretenimiento", "Muebles" }));
+        ComboCategoría.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cocina", "Todas", "Limpieza", "Entretenimiento", "Muebles" }));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Categoría");
@@ -86,13 +85,6 @@ public class Inicio extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Carrito");
 
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,9 +98,7 @@ public class Inicio extends javax.swing.JFrame {
                         .addGap(3, 3, 3)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ComboCategoría, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8))
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(btnVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,8 +117,6 @@ public class Inicio extends javax.swing.JFrame {
                         .addComponent(ComboCategoría, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnVerProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -155,13 +143,6 @@ public class Inicio extends javax.swing.JFrame {
         producto.setVisible(true);    
         this.dispose();
     }//GEN-LAST:event_btnVerProductoActionPerformed
-
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        
-        /*ControladorProductos CP = new ControladorProductos();
-        
-        ControladorProductos.actualizar();*/
-    }//GEN-LAST:event_btnActualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,7 +186,6 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboCategoría;
-    public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnVerProducto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -214,16 +194,14 @@ public class Inicio extends javax.swing.JFrame {
     public javax.swing.JTable tablaProductos;
     // End of variables declaration//GEN-END:variables
 
-public JTable getTablaProductos() {
+    public JTable getTablaProductos() {
         return tablaProductos;
     }
-    public JButton getBtnActualizar() {
-        return btnActualizar;
-    }
-    
+
     public JButton getBtnVerProducto() {
         return btnVerProducto;
     }
+
     public JComboBox getComboCategoría() {
         return ComboCategoría;
     }
