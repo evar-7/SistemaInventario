@@ -13,7 +13,7 @@ public class ProductosDAO {
     
     private final String URL = "jdbc:mysql://localhost:3306/tiendavirtual";
     private final String USER = "root";
-    private final String PASS = "12345";
+    private final String PASS = "";
     
     public List<Productos> obtenerTodos() {
         List<Productos> producto = new ArrayList<>();
@@ -154,5 +154,25 @@ public class ProductosDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public int obtenerStockPorId(int idProducto) {
+        int stock = -1;
+        String sql = "SELECT stock FROM productos WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setInt(1, idProducto);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                stock = rs.getInt("stock");
+            }
+
+        } catch (Exception e) {
+            System.out.println("Error al obtener stock: " + e.getMessage());
+        }
+
+        return stock;
     }
 }
