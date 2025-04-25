@@ -66,8 +66,8 @@ public class ControladorProductos implements ActionListener {
             insertar();
         } else if (e.getSource() == vista.getBtnActualizar()) {
             actualizar();
-        } else if (e.getSource() == vista.getBtnActualizar()) {
-            agregarAlCarrito();
+        } else if (e.getSource() == vista.getComboCategoría()) {
+            cargarTabla();
 }
     }
 
@@ -139,18 +139,19 @@ public class ControladorProductos implements ActionListener {
     }
 
     public void cargarTabla() {
+        int x = 5;
         if (vista.getComboCategoría().equals("Cocina")) {
-            int x = 1;
+            x = 1;
         } else if (vista.getComboCategoría().equals("Limpieza")) {
-            int x = 2;
+            x = 2;
         } else if (vista.getComboCategoría().equals("Entretenimiento")) {
-            int x = 3;
+            x = 3;
         } else if (vista.getComboCategoría().equals("Muebles")) {
-            int x = 4;
-            } else if (vista.getComboCategoría().equals("Todas")) {
-            int x = 5;
-
-            List<Productos> lista = dao.obtenerTodos();
+            x = 4;
+        } else if (vista.getComboCategoría().equals("Todas")) {
+            x = 5;
+        }
+            List<Productos> lista = dao.obtenerTodosFiltrados(x);
             DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
             modelo.setRowCount(0);
 
@@ -166,7 +167,7 @@ public class ControladorProductos implements ActionListener {
                 });
             }
         }
-    }
+    
     public void agregarAlCarrito() {
         int fila = vista.getTablaProductos().getSelectedRow();
         if (fila >= 0) {
