@@ -34,6 +34,9 @@ public class PedidoDAO {
         }
     }
 
+    
+    
+    
     public List<Pedido> obtenerPedidosPorCliente(int id_Usuario) {
         List<Pedido> pedidos = new ArrayList<>();
         String sql = "SELECT * FROM pedido WHERE id_usuario=?";

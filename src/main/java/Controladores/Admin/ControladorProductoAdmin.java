@@ -117,6 +117,9 @@ public class ControladorProductoAdmin implements ActionListener {
     }
 
     private void cargarTabla() {
+        
+        
+        
         List<Productos> lista = dao.obtenerTodos();
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(new String[]{"ID", "Nombre", "Descripción", "Precio", "Stock", "Categoría", "Proveedor"});

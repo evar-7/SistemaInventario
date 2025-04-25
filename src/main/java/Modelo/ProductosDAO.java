@@ -38,6 +38,55 @@ public class ProductosDAO {
         }
         return producto;
     }
+    
+     public List<Productos> obtenerTodosFiltrados(int x) {
+        List<Productos> producto = new ArrayList<>();
+        String y;
+         switch (x) {
+             case 1:
+                 y = "SELECT * FROM producto where categoria='Cocina'";
+                 break;
+             case 2:
+                 y = "SELECT * FROM producto where categoria='Limpieza'";
+                 break;
+             case 3:
+                 y = "SELECT * FROM producto where categoria='Entretenimiento'";
+                 break;
+             case 4:
+                 y = "SELECT * FROM producto where categoria='Muebles'";
+                 break;
+             case 5:
+                 y = "SELECT * FROM producto";
+                 break;
+             default:
+                 throw new AssertionError("Ingrese un valor");
+         }
+
+
+        
+
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASS);
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(y)) {
+            while (rs.next()) {
+                Productos a = new Productos();
+                a.setId(rs.getInt("id_producto"));
+                a.setNombre(rs.getString("nombre"));
+                a.setDescripcion(rs.getString("descripcion"));
+                a.setPrecio(rs.getInt("precio"));
+                a.setStockDisponible(rs.getInt("stock"));
+                a.setCategoria(rs.getString("categoria"));
+                a.setProveedor(rs.getString("proveedor"));
+                producto.add(a);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return producto;
+    }
+    
+    
+    
     public void insertar(Productos producto) {
         String sql = "INSERT INTO producto (nombre, descripcion, precio, stock, categoria, proveedor) VALUES (?, ?, ?, ?, ?, ?)";
 
