@@ -1,13 +1,14 @@
 package Vista;
 
 import Controladores.ControladorProductoIndividual;
+import Modelo.Carrito;
 import javax.swing.JButton;
 import javax.swing.JTable;
 
 
 public class Producto extends javax.swing.JFrame {
 
-    
+    private Carrito carrito;
     private JTable tablaProductos;
 
     public Producto() {
@@ -149,17 +150,13 @@ public class Producto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_btnAgregarCarritoActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
-        Vista.Producto producto = new Vista.Producto();
-        ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto);
-        producto.setVisible(true);
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -187,7 +184,10 @@ public class Producto extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+                Producto producto = new Producto();
+                Inicio inicio = new Inicio();
+                ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto, inicio);
+                producto.setVisible(true);
             }
         });
     }
@@ -215,20 +215,18 @@ public class Producto extends javax.swing.JFrame {
     return jLabel1;
 }
 
-public javax.swing.JLabel getjLabel3() {
-    return jLabel3;
-}
+    public javax.swing.JLabel getjLabel3() {
+        return jLabel3;
+    }
 
-public javax.swing.JLabel getjLabel4() {
-    return jLabel4;
-}
+    public javax.swing.JLabel getjLabel4() {
+        return jLabel4;
+    }
 
-public javax.swing.JLabel getjLabel5() {
-    return jLabel5;
-}
-public JButton getBtnVolver() {
-        return btnVolver;
-}
-    
-    
+    public javax.swing.JLabel getjLabel5() {
+        return jLabel5;
+    }
+    public JButton getBtnVolver() {
+            return btnVolver;
+    }   
 }
