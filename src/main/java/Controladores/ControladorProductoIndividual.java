@@ -42,6 +42,8 @@ private void agregarEventos() {
 @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == productoVista.getBtnAgregarCarrito()) {
+            
+            JOptionPane.showMessageDialog(null, "pruebabtn");
             agregarAlCarrito();
 
         } else if (e.getSource() == productoVista.getBtnAgregarCarrito()) {
@@ -51,43 +53,38 @@ private void agregarEventos() {
     }
 
     public void agregarAlCarrito() {
-
-        //Valida de q hay stock
         
-        int columna = vista.getTablaProductos().getSelectedColumn();
-        int fila = vista.getTablaProductos().getSelectedRow();
-        int x = Integer.parseInt(vista.getTablaProductos().getValueAt(fila, columna).toString());
+        int fila = productoVista.getTablaProductos().getSelectedRow();
 
-        if (x <= 0) {
-            JOptionPane.showMessageDialog(null, "No hay stock disponible");
-            return;
+        if (fila >= 0) {
+            try {
+                DefaultTableModel modelo = (DefaultTableModel) productoVista.getTablaProductos().getModel();
 
-            //Agrega carrito
-            
-        } else {
+                int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
 
-            if (fila >= 0) {
-                try {
-                    DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
+                int stockBD = dao.obtenerStockPorId(id);
 
-                    int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
-                    String nombre = modelo.getValueAt(fila, 1).toString();
-                    String descripcion = modelo.getValueAt(fila, 2).toString();
-                    int precio = Integer.parseInt(modelo.getValueAt(fila, 3).toString());
-                    int stock = Integer.parseInt(modelo.getValueAt(fila, 4).toString());
-                    String categoria = modelo.getValueAt(fila, 5).toString();
-                    String proveedor = modelo.getValueAt(fila, 6).toString();
-
-                    Productos producto = new Productos(id, nombre, descripcion, precio, stock, categoria, proveedor);
-                    carrito.agregarProducto(producto);
-
-                    JOptionPane.showMessageDialog(vista, "Producto agregado al carrito.");
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(vista, "Error al agregar al carrito: " + ex.getMessage());
+                if (stockBD <= 0) {
+                    JOptionPane.showMessageDialog(productoVista, "No hay stock disponible para este producto.");
+                    return;
                 }
-            } else {
-                JOptionPane.showMessageDialog(vista, "Seleccione un producto para agregar al carrito.");
+
+                String nombre = modelo.getValueAt(fila, 1).toString();
+                String descripcion = modelo.getValueAt(fila, 2).toString();
+                int precio = Integer.parseInt(modelo.getValueAt(fila, 3).toString());
+                String categoria = modelo.getValueAt(fila, 5).toString();
+                String proveedor = modelo.getValueAt(fila, 6).toString();
+
+                Productos producto = new Productos(id, nombre, descripcion, precio, stockBD, categoria, proveedor);
+                carrito.agregarProducto(producto);
+
+                JOptionPane.showMessageDialog(productoVista, "Producto agregado al carrito.");
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(productoVista, "Error al agregar al carrito: " + ex.getMessage());
             }
+        } else {
+            JOptionPane.showMessageDialog(productoVista, "Seleccione un producto para agregar al carrito.");
         }
     }
 
