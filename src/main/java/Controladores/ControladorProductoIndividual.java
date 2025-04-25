@@ -3,6 +3,7 @@ package Controladores;
 import Modelo.Carrito;
 import Modelo.Productos;
 import Modelo.ProductosDAO;
+import Vista.Inicio;
 import Vista.Producto;
 import Vista.VistaCarrito;
 import javax.swing.JOptionPane;
@@ -15,12 +16,24 @@ public class ControladorProductoIndividual implements ActionListener {
     private Producto productoVista;
     private ProductosDAO dao;
     private Carrito carrito;
+    private Inicio inicioVista;
 
-    public ControladorProductoIndividual(Producto productoVista) {
+    public ControladorProductoIndividual(Producto productoVista, Inicio inicioVista) {
         this.productoVista = productoVista;
         this.dao = new ProductosDAO();
         this.carrito = new Carrito();
         agregarEventos();
+        
+        inicioVista.getBtnVerCarrito().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Carrito antes de pasar: " + carrito);
+
+                VistaCarrito vistaCarrito = new VistaCarrito();
+                ControladorCarrito controladorCarrito = new ControladorCarrito(vistaCarrito, carrito);
+                vistaCarrito.setVisible(true);
+            }
+        });
     }
 
     private void agregarEventos() {
@@ -51,13 +64,6 @@ public class ControladorProductoIndividual implements ActionListener {
             int precio = Integer.parseInt(precioTexto);
             int stockDisponible = Integer.parseInt(stockTexto);
 
-            // Necesitas obtener el ID del producto de alguna manera. Podrías pasarlo al formulario Producto
-            // o recuperarlo de la base de datos basado en el nombre (si es único).
-            // Por ahora, asumimos que tienes una forma de obtener el ID.
-            // int idProducto = ... ;
-
-            // Simulamos obtener el ID (deberías tener tu propia lógica)
-            // Esto es solo un ejemplo, ¡no uses esto en producción si el nombre no es único!
             Productos productoBD = dao.obtenerProductoPorNombre(nombre);
             if (productoBD != null) {
                 int idProducto = productoBD.getId();
@@ -79,10 +85,6 @@ public class ControladorProductoIndividual implements ActionListener {
             JOptionPane.showMessageDialog(productoVista, "Error al procesar el precio o el stock.");
         }
     }
-
-    
-
-    
-    }
+}
 
 
