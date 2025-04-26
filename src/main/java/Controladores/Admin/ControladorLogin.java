@@ -1,5 +1,6 @@
 package Controladores.Admin;
 
+import Controladores.ControladorProductos;
 import Vista.*;
 import Modelo.Usuario;
 import Datos.Conexion;
@@ -21,6 +22,7 @@ public class ControladorLogin {
 
         this.vista.btn_login.addActionListener(new ActionListener() {
             @Override
+            
             
             
             public void actionPerformed(ActionEvent e) {
@@ -54,7 +56,10 @@ public class ControladorLogin {
                     MenuAdmin menuAdmin = new MenuAdmin();
                     menuAdmin.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Cliente"); // Aquí podrías abrir la interfaz de cliente
+                    Vista.Inicio inicio = new Vista.Inicio();
+                    ControladorProductos CP = new ControladorProductos(inicio);
+                    inicio.setVisible(true);
+                    vista.dispose();
                 }
 
             } else {
