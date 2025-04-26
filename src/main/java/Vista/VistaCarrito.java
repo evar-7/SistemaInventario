@@ -45,6 +45,8 @@ public class VistaCarrito extends javax.swing.JFrame {
         setTitle("Carrito de compras");
         setLocation(new java.awt.Point(0, 0));
 
+        jPanel1.setBackground(new java.awt.Color(41, 58, 112));
+
         tablaCarrito.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
