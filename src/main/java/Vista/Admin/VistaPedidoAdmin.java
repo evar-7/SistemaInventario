@@ -19,6 +19,8 @@ public class VistaPedidoAdmin extends javax.swing.JFrame {
     public VistaPedidoAdmin() {
         setTitle("Gestión de pedidos - Administración");
         initComponents();
+        this.setLocationRelativeTo(this);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         tabla_pedidos.setBackground(java.awt.Color.decode("#ffffff"));
         tabla_pedidos.setForeground(java.awt.Color.decode("#212529"));
         tabla_pedidos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 12));

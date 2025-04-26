@@ -38,11 +38,12 @@ public class MenuAdmin extends JFrame {
      * Creates new form MenuAdmin
      */
     public MenuAdmin() {
+        this.setLocationRelativeTo(this);
         setTitle("Menú de Administración");
         setSize(500, 400);
         setLocationRelativeTo(null);
         setResizable(false);
-
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         JPanel contenedor = new JPanel(new BorderLayout());
         contenedor.setBackground(new Color(230, 233, 240));
 

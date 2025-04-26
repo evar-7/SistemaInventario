@@ -19,7 +19,9 @@ public class VistaUsuarioAdmin extends javax.swing.JFrame {
     public VistaUsuarioAdmin() {
         setTitle("Gestión de Usuarios - Administrador");
         initComponents();
-        
+        this.setLocationRelativeTo(this);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     /**

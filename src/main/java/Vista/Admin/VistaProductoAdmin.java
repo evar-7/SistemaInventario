@@ -14,10 +14,14 @@ public class VistaProductoAdmin extends javax.swing.JFrame {
      * Creates new form VistaProductoAdmin
      */
     public VistaProductoAdmin() {
-        setTitle("Gestión de productos - Administración");
-        initComponents();
-    } 
 
+        initComponents();
+
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        this.setLocationRelativeTo(this);
+        setTitle("Gestión de productos - Administración");
+
+    } 
     /** 
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -9,6 +9,7 @@ public class MenuReportes extends JFrame {
     private JPanel panelMenu;
 
     public MenuReportes() {
+        this.setLocationRelativeTo(this);
         setTitle("Menú de Reportes");
         setSize(500, 400);
         setLocationRelativeTo(null);
@@ -34,7 +35,7 @@ public class MenuReportes extends JFrame {
         JButton btnVentas = new JButton("Reporte de Ventas", iconoVentas);
         JButton btnInventario = new JButton("Reporte de Inventario", iconoInventario);
         JButton btnPedidos = new JButton("Reporte de Pedidos", iconoPedidos);
-
+    
         JButton[] botones = {btnVentas, btnInventario, btnPedidos};
         for (JButton btn : botones) {
             btn.setHorizontalTextPosition(SwingConstants.CENTER);
