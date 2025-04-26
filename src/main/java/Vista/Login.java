@@ -18,7 +18,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
-        SetImageLabel(jLabel5, "src/main/java/Imagenes/mas.png");
+        SetImageLabel(jLabel5, "/Imagenes/mas.png");
 
     }
 

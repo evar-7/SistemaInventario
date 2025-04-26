@@ -1,8 +1,10 @@
 package Controladores;
 
 import Modelo.Carrito;
-import Modelo.ProductosDAO;import Vista.VistaProductos;
+import Modelo.ProductosDAO;
+import Vista.VistaProductos;
 import Modelo.Productos;
+import Modelo.ItemCarrito;
 import Vista.Inicio;
 import Vista.Producto;
 import Vista.VistaCarrito;
@@ -14,18 +16,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class ControladorProductos implements ActionListener {
 
-    
     private Inicio vista;
     private ProductosDAO dao;
-    private Carrito carrito;
     private Producto productoVista;
 
-    
-    
     public ControladorProductos(Inicio vista) {
         this.vista = vista;
         this.dao = new ProductosDAO();
-        this.carrito = new Carrito();
         vista.getComboCategoría().addActionListener(this);
         agregarEventos();
         cargarTabla();
@@ -34,22 +31,21 @@ public class ControladorProductos implements ActionListener {
     public ControladorProductos(Producto vista) {
         this.productoVista = vista;
     }
-  
+
     private void agregarEventos() {
         vista.getBtnVerProducto().addActionListener(this);
         vista.getBtnVerCarrito().addActionListener(this);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.getComboCategoría()) {
             cargarTabla();
-
         } else if (e.getSource() == vista.getBtnVerCarrito()) {
             mostrarCarrito();
+        }
     }
-    }
+
     public void insertar() {
         try {
             String nombre = JOptionPane.showInputDialog("Nombre:");
@@ -67,35 +63,6 @@ public class ControladorProductos implements ActionListener {
             JOptionPane.showMessageDialog(vista, "Error al agregar: " + ex.getMessage());
         }
     }
-/*
-    public void actualizar() {
-        int fila = vista.getTablaProductos().getSelectedRow();
-        if (fila >= 0) {
-            try {
-
-                DefaultTableModel modelo = (DefaultTableModel) vista.getTablaProductos().getModel();
-
-                int id = Integer.parseInt(modelo.getValueAt(fila, 0).toString());
-
-                String nombre = modelo.getValueAt(fila, 1).toString();
-                String descripcion = modelo.getValueAt(fila, 2).toString();
-                int precio = Integer.parseInt(modelo.getValueAt(fila, 3).toString());
-                int stock = Integer.parseInt(modelo.getValueAt(fila, 4).toString());
-                String categoria = modelo.getValueAt(fila, 5).toString();
-                String proveedor = modelo.getValueAt(fila, 6).toString();
-
-                Productos producto = new Productos(id, nombre, descripcion, precio, stock, categoria, proveedor);
-                dao.actualizar(producto, id);
-
-                JOptionPane.showMessageDialog(vista, "Producto actualizado.");
-                cargarTabla();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(vista, "Error al actualizar: " + ex.getMessage());
-            }
-        } else {
-            JOptionPane.showMessageDialog(vista, "Seleccione un producto para actualizar.");
-        }
-    }*/
 
     public void eliminar() {
         int fila = vista.getTablaProductos().getSelectedRow();
@@ -148,26 +115,21 @@ public class ControladorProductos implements ActionListener {
         }
     }
 
-   
     public void mostrarCarrito() {
         VistaCarrito vistaCarrito = new VistaCarrito();
         DefaultTableModel modelo = (DefaultTableModel) vistaCarrito.getTablaCarrito().getModel();
         modelo.setRowCount(0);
 
-        for (Productos p : carrito.getProductos()) {
+        for (ItemCarrito item : Carrito.getProductos()) {
             modelo.addRow(new Object[]{
-                p.getNombre(),
-                p.getDescripcion(),
-                p.getPrecio(),
-                p.getCategoria()
+                item.getNombreProducto(),
+                "-", // descripción opcional si la deseas
+                item.getPrecioUnitario(),
+                item.getCantidad()
             });
         }
 
         vistaCarrito.getBtnCerrar().addActionListener(e -> vistaCarrito.dispose());
         vistaCarrito.setVisible(true);
-
     }
-    
-    
-    
 }

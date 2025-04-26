@@ -12,45 +12,28 @@ import Vista.Producto;
 import Vista.VistaCarrito;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
-public class ControladorCarrito implements ActionListener {
-    private VistaCarrito vistaCarrito;
-    private Carrito carrito;
+public class ControladorCarrito {
+    private static List<Carrito> carrito = new ArrayList<>();
 
-    public ControladorCarrito(VistaCarrito vistaCarrito, Carrito carrito) {
-        this.vistaCarrito = vistaCarrito;
-        this.carrito = carrito;
+    public static void agregarProducto(Carrito producto) {
+        carrito.add(producto);
         
-        mostrarProductosEnCarrito();
-
-        // Cargar productos en la tabla
-        vistaCarrito.cargarDatosCarrito(carrito.getProductos());
-
-        // Agregar eventos
-        vistaCarrito.getBtnCerrar().addActionListener(this);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vistaCarrito.getBtnCerrar()) {
-            vistaCarrito.dispose();
-        }
+    public static List<Carrito> obtenerProductos() {
+        return carrito;
+    }
+
+//    public static void eliminarProducto(int idProducto) {
+//        carrito.removeIf(c -> c.getIdProducto() == idProducto);
+//    }
+
+    public static void vaciarCarrito() {
+        carrito.clear();
     }
     
-    private void mostrarProductosEnCarrito() {
-        if (carrito != null && carrito.getProductos() != null) {
-            DefaultTableModel modelo = (DefaultTableModel) vistaCarrito.getTablaCarrito().getModel();
-            modelo.setRowCount(0);
-
-            for (Productos producto : carrito.getProductos()) {
-                Object[] fila = {
-                    producto.getNombre(),
-                    producto.getPrecio(),
-                    producto.getStockDisponible()
-                };
-                modelo.addRow(fila);
-            }
-        }
-    }
 }

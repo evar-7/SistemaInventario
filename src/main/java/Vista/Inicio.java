@@ -166,7 +166,7 @@ public class Inicio extends javax.swing.JFrame {
             String stock = tablaProductos.getValueAt(filaSeleccionada, 4).toString();
 
             Vista.Producto producto = new Vista.Producto(nombre, descripcion, precio, stock);
-            ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto, this);
+//            ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto, this);
             producto.setVisible(true);
             this.dispose(); // opcional: cerrar ventana actual
         } else {
@@ -175,9 +175,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerProductoActionPerformed
 
     private void btnVerCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerCarritoActionPerformed
-        VistaCarrito vistaCarrito = new VistaCarrito();
-        ControladorCarrito controladorCarrito = new ControladorCarrito(vistaCarrito, carrito);
-        vistaCarrito.setVisible(true);
+//        VistaCarrito vistaCarrito = new VistaCarrito();
+//        ControladorCarrito controladorCarrito = new ControladorCarrito(vistaCarrito, carrito);
+//        vistaCarrito.setVisible(true);
     }//GEN-LAST:event_btnVerCarritoActionPerformed
 
     /**

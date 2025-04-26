@@ -1,10 +1,12 @@
 package Vista;
 
 import Controladores.ControladorProductoIndividual;
+import Controladores.ControladorProductos;
 import Modelo.Carrito;
+import Modelo.ItemCarrito;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
-
 
 public class Producto extends javax.swing.JFrame {
 
@@ -15,7 +17,7 @@ public class Producto extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     public Producto(String nombre, String descripcion, String precio, String stock) {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -81,6 +83,11 @@ public class Producto extends javax.swing.JFrame {
         });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -150,14 +157,43 @@ public class Producto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarCarritoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCarritoActionPerformed
+        try {
+            String nombreTexto = jLabel4.getText().replace("Nombre Producto: ", "").trim();
+            String descripcion = jLabel3.getText().replace("Descripción: ", "").trim();
+            String stockTexto = jLabel1.getText().replace("Stock Disponible: ", "").trim();
+            String precioTexto = jLabel5.getText().replace("Precio: ₡", "").trim();
 
+            int idGenerico = nombreTexto.hashCode();
+            int cantidad = 1;
+            int stock = Integer.parseInt(stockTexto);
+            double precio = Double.parseDouble(precioTexto);
+
+            if (stock <= 0) {
+                JOptionPane.showMessageDialog(this, "No hay stock disponible.");
+                return;
+            }
+            ItemCarrito item = new ItemCarrito(idGenerico, nombreTexto, cantidad, precio);
+            Carrito.agregarProducto(item);
+            JOptionPane.showMessageDialog(this, nombreTexto + " agregado al carrito.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error al agregar al carrito: " + e.getMessage());
+        }
     }//GEN-LAST:event_btnAgregarCarritoActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+
+        Inicio inicio = new Inicio();
+        ControladorProductos cp = new ControladorProductos(inicio);
+
+        inicio.setVisible(true);
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -186,7 +222,7 @@ public class Producto extends javax.swing.JFrame {
             public void run() {
                 Producto producto = new Producto();
                 Inicio inicio = new Inicio();
-                ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto, inicio);
+//                ControladorProductoIndividual CPI = new ControladorProductoIndividual(producto, inicio);
                 producto.setVisible(true);
             }
         });
@@ -206,14 +242,14 @@ public class Producto extends javax.swing.JFrame {
     public JButton getBtnAgregarCarrito() {
         return btnAgregarCarrito;
     }
-   
+
     public JTable getTablaProductos() {
         return tablaProductos;
     }
-    
+
     public javax.swing.JLabel getjLabel1() {
-    return jLabel1;
-}
+        return jLabel1;
+    }
 
     public javax.swing.JLabel getjLabel3() {
         return jLabel3;
@@ -226,7 +262,8 @@ public class Producto extends javax.swing.JFrame {
     public javax.swing.JLabel getjLabel5() {
         return jLabel5;
     }
+
     public JButton getBtnVolver() {
-            return btnVolver;
-    }   
+        return btnVolver;
+    }
 }
